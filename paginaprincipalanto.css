@@ -177,15 +177,17 @@ body {
   font-size: 2.2rem;
   line-height: 1.15;
   margin-bottom: 1.25rem;
-  font-weight: 800;
+  font-weight: 790;
   text-transform: uppercase;
   width: 100vw;
+  transform:translateY(-3rem);
 }
 
 .texto-hero p {
   font-size: 0.95rem;
   line-height: 1.5;
   color: #e0e0e0;
+  transform: translateY(-3rem);
 }
 
 .contenedordeiphone {
@@ -215,14 +217,14 @@ body {
 
 /* Celular Izquierdo (al frente) */
 .Iphone17izquierda {
-  transform: rotate(-12deg);
+  transform: rotate(-20deg);
   left: -10rem;
   z-index: 2; /* Mayor nivel para superponerlo */
 }
 
 /* Celular Derecho (detrás) */
 .Iphone17derecha {
-  transform: rotate(12deg);
+  transform: rotate(17deg);
   right: 1rem;
   z-index: 1; /* Menor nivel para enviarlo atrás */
 }
