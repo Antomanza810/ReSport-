@@ -19,13 +19,13 @@ body {
 
 /* Header / Navbar superior */
 .cuadradoresport {
-  height: 65px;
+  height: 4rem;
   width: 100%;
   background-color: var(--header-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 2.5rem;
 }
 
 .logo {
@@ -36,15 +36,15 @@ body {
 
 .contenedor-botones {
   display: flex;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .CrearCuenta {
   text-decoration: none;
   color: #000;
-  border: 2px solid #000;
-  border-radius: 8px;
-  padding: 6px 16px;
+  border: 0.125rem solid #000;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1rem;
   font-size: 0.95rem;
   background-color: rgba(255, 255, 255, 0.1);
   font-weight: 500;
@@ -53,9 +53,9 @@ body {
 .IniciarSesion {
   text-decoration: none;
   color: #000;
-  border: 2px solid #000;
-  border-radius: 8px;
-  padding: 6px 16px;
+  border: 0.125rem solid #000;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1rem;
   font-size: 0.95rem;
   background-color: #FFCE1C;
   font-weight: 500;
@@ -72,9 +72,103 @@ body {
   overflow: hidden;
 }
 
-/* Sección de texto (Lado Izquierdo) */
+/* Imagen de fondo que cubre toda la sección principal */
+.imagen1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 73%;
+  height: 86%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(10deg) translateY(-5rem);
+  
+}
+
+.imagen1 img {
+  width: 61vw;
+  height: 86vh;
+  opacity: 0.25;
+  border-radius: 67px;
+}
+
+.imagen2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 73%;
+  height: 82%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(-28deg) translateY(30rem) translateX(10rem);
+  
+}
+
+.imagen2 img {
+  width: 73%;
+  height: 82%;
+  opacity: 0.25;
+  border-radius: 67px;
+}
+
+.imagen3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65%;
+  height: 82%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(28deg) translateY(25rem) translateX(7rem);
+  
+}
+
+.imagen3 img {
+  width: 60%;
+  height: 82%;
+  opacity: 0.25;
+  border-radius: 67px;
+}
+
+.imagen4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 68%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(14deg)translateX(50rem)translateY(-20rem);
+  
+}
+
+.imagen4 img {
+  width: 53%;
+  height: 68%;
+  opacity: 0.25;
+  border-radius: 67px;
+}
+
+.imagen5 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85%;
+  height: 122%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(-38deg)translateX(60rem)translateY(40rem);
+  
+}
+
+.imagen5 img {
+  width: 53%;
+  height: 68%;
+  opacity: 0.25;
+  border-radius: 67px;
+}
 .texto-hero {
-  max-width: 420px;
+  max-width: 26rem;
   color: #ffffff;
   z-index: 5;
 }
@@ -82,9 +176,10 @@ body {
 .texto-hero h2 {
   font-size: 2.2rem;
   line-height: 1.15;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   font-weight: 800;
   text-transform: uppercase;
+  width: 100vw;
 }
 
 .texto-hero p {
@@ -93,74 +188,48 @@ body {
   color: #e0e0e0;
 }
 
-/* Sección de iPhones (Lado Derecho) */
 .contenedordeiphone {
   position: relative;
-  width: 450px;
-  height: 520px;
+  width: 28rem;
+  height: 32rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .Iphone17izquierda,
 .Iphone17derecha {
-  width: 15vw;
-  height: 60vh;
+  width: 14rem;
+  height: 28rem;
   background-color: #ffffff;
-  border: 4px solid #000000;
-  border-radius: 36px;
+  border: 0.25rem solid #000000;
+  border-radius: 2.25rem;
   position: absolute;
   display: flex;
   justify-content: center;
-  padding-top: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  padding-top: 0.75rem;
+  box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.3);
+  margin-right: 8rem;
 }
 
-/* Celular Izquierdo (detrás) */
+/* Celular Izquierdo (al frente) */
 .Iphone17izquierda {
-  transform: translateX(-200px) rotate(-15deg);
-  left: 30px;
-  z-index: 1;
+  transform: rotate(-12deg);
+  left: -10rem;
+  z-index: 2; /* Mayor nivel para superponerlo */
 }
 
-/* Celular Derecho (al frente) */
+/* Celular Derecho (detrás) */
 .Iphone17derecha {
-  transform: rotate(15deg);
-  right: 30px;
-  z-index: 2;
+  transform: rotate(12deg);
+  right: 1rem;
+  z-index: 1; /* Menor nivel para enviarlo atrás */
 }
 
 .camarita {
   background-color: #000000;
-  width: 4vw;
-  height: 2vh;
-  border-radius: 10px;
-}
-
-.contenido-principal {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 8%;
-  position: relative;
-}
-
-/* 2. Estilo de la imagen sin border-image y con posición corregida */
-.imagen1 {
-  position: absolute;
-  width: 1600px; 
-  height: 900px;
-  
-  /* Valores positivos/ajustados para que la curva baje y entre en pantalla */
-  left: -40px;  
-  top: 20px;    
-  
-  opacity: 0.25;
-  border-radius: 90px; 
-  transform: rotate(10deg);
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
+  width: 3.5rem;
+  height: 1.2rem;
+  border-radius: 0.6rem;
 }
