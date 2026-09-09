@@ -39,7 +39,7 @@ body {
   gap: 15px;
 }
 
-.btn-header {
+.CrearCuenta {
   text-decoration: none;
   color: #000;
   border: 2px solid #000;
@@ -47,6 +47,17 @@ body {
   padding: 6px 16px;
   font-size: 0.95rem;
   background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+}
+
+.IniciarSesion {
+  text-decoration: none;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  background-color: #FFCE1C;
   font-weight: 500;
 }
 
@@ -122,8 +133,34 @@ body {
 
 .camarita {
   background-color: #000000;
-  width: 60px;
-  height: 18px;
+  width: 4vw;
+  height: 2vh;
   border-radius: 10px;
 }
 
+.contenido-principal {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8%;
+  position: relative;
+}
+
+/* 2. Estilo de la imagen sin border-image y con posición corregida */
+.imagen1 {
+  position: absolute;
+  width: 1600px; 
+  height: 900px;
+  
+  /* Valores positivos/ajustados para que la curva baje y entre en pantalla */
+  left: -40px;  
+  top: 20px;    
+  
+  opacity: 0.25;
+  border-radius: 90px; 
+  transform: rotate(10deg);
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
