@@ -108,7 +108,7 @@ body {
 
 /* Celular Izquierdo (detrás) */
 .Iphone17izquierda {
-  transform: rotate(-15deg) translateX(-80px);
+  transform: translateX(-200px) rotate(-15deg);
   left: 30px;
   z-index: 1;
 }
@@ -126,3 +126,4 @@ body {
   height: 18px;
   border-radius: 10px;
 }
+
