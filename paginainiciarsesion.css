@@ -83,6 +83,7 @@ button {
     margin: 1rem auto;
     width: 15vw;
     height: 7vh;
+    border-radius: 0.5rem;
 }
 
 
@@ -116,4 +117,42 @@ position: relative;
   right: 2vw;
   text-align: center;
 
+}
+
+.imagen1iniciarsesion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85%;
+  height: 122%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(38deg)translateX(0rem)translateY(30rem);
+  
+}
+
+.imagen1iniciarsesion img {
+  width: 53%;
+  height: 68%;
+  opacity: 0.25;
+  border-radius: 67px;
+}
+
+.imagen2iniciarsesion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 85%;
+  height: 122%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(38deg)translateX(0rem)translateY(10rem);
+  
+}
+
+.imagen2iniciarsesion img {
+  width: 53%;
+  height: 68%;
+  opacity: 0.25;
+  border-radius: 67px;
 }
