@@ -1,22 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cuenta</title>
 </head>
 <body>
-   
-<a href="paginaprincipalanto.html" class="Inicio">ReSport+</a>
+    
+    <a href="paginaprincipalanto.html" class="Inicio">ReSport+</a>
 
-<section class="imagen2crearcuenta">
-    <img src="https://www.basic-fit.com/on/demandware.static/-/Library-Sites-basic-fit-shared-library/default/dw16c1178a/Blogs/New%20fitness%20routine/Landscape-BasicFit%20Tilburg%2026-8-2114052.jpg" alt="imagen2crearcuenta">
-</section>
-<section class="imagen1crearcuenta">
-    <img src="https://img.asmedia.epimg.net/resizer/v2/WLNK6KSK6RCRTAWMFY7TN6ANQY.jpg?auth=167c001e33907445cbbd39dfd91dfcd7d57d86ec097082d196af212c82a82d80&width=1200&height=1200&smart=true" alt="imagen1crearcuenta">
-</section>
+    <!-- SECCIÓN DEL FORMULARIO COMPLETO -->
+    <main class="contenedor-formulario">
+        <h2>Crear cuenta:</h2>
+        <form action="#">
+            
+            <div class="input-container">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email"><span class="label-title">Email:</span> ingresá tu mail</label>
+            </div>
 
+            <div class="input-container">
+                <input type="text" id="nombre" placeholder=" " required>
+                <label for="nombre"><span class="label-title">Nombre:</span> ingresá tu nombre</label>
+            </div>
 
+            <div class="input-container">
+                <input type="text" id="apellido" placeholder=" " required>
+                <label for="apellido"><span class="label-title">Apellido:</span> ingresá tu apellido</label>
+            </div>
+
+            <div class="input-container">
+                <input type="password" id="password" placeholder=" " required>
+                <label for="password"><span class="label-title">Contraseña:</span> ingresá tu contraseña</label>
+            </div>
+
+            <div class="input-container">
+                <input type="password" id="confirm-password" placeholder=" " required>
+                <label for="confirm-password"><span class="label-title">Confirmar Contraseña:</span> repita la contraseña</label>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="dni" placeholder=" " required>
+                <label for="dni"><span class="label-title">Dni:</span> ingresá tu dni</label>
+            </div>
+
+        </form>
+    </main>
+
+    <!-- BOTÓN SOY MEDICO -->
+    <button type="button" class="btn-medico">Soy Medico</button>
+
+    <!-- IMÁGENES DE FONDO -->
+    <section class="imagen2crearcuenta">
+        <img src="https://www.basic-fit.com/on/demandware.static/-/Library-Sites-basic-fit-shared-library/default/dw16c1178a/Blogs/New%20fitness%20routine/Landscape-BasicFit%20Tilburg%2026-8-2114052.jpg" alt="imagen2crearcuenta">
+    </section>
+    <section class="imagen1crearcuenta">
+        <img src="https://img.asmedia.epimg.net/resizer/v2/WLNK6KSK6RCRTAWMFY7TN6ANQY.jpg?auth=167c001e33907445cbbd39dfd91dfcd7d57d86ec097082d196af212c82a82d80&width=1200&height=1200&smart=true" alt="imagen1crearcuenta">
+    </section>
+    <section class="imagen4crearcuenta">
+        <img src="data:image/jpeg;base64,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" alt="imagen4crearcuenta">
+    </section>
 
 </body>
 </html>
@@ -27,6 +70,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -38,7 +82,7 @@ body {
 
 .Inicio {
     font-weight: 350;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #ffffff;
     margin-left: 2vw;
     margin-top: 1vh;
@@ -48,21 +92,118 @@ body {
     z-index: 10;
 }
 
-/* Imagen Superior (Mujer) */
+/* --- FORMULARIO Y CAMPOS DE ENTRADA --- */
+
+.contenedor-formulario {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado exacto en pantalla */
+    z-index: 10;
+    width: 380px;
+}
+
+.contenedor-formulario h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.input-container input {
+    width: 100%;
+    height: 48px;
+    padding: 14px 14px 0px 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.45); /* Fondo gris translúcido como la imagen */
+    color: #333333;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.input-container label {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666666;
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    width: calc(100% - 28px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilo para el título de la etiqueta (Email:, Nombre:, etc.) */
+.label-title {
+    color: #222222;
+    font-weight: bold;
+}
+
+/* EFECTO: Se activa al hacer clic (:focus) o al escribir (:not(:placeholder-shown)) */
+.input-container input:focus ~ label,
+.input-container input:not(:placeholder-shown) ~ label {
+    top: 10px;
+    transform: translateY(0);
+    font-size: 0.7rem;
+}
+
+.input-container input:focus ~ label .label-title,
+.input-container input:not(:placeholder-shown) ~ label .label-title {
+    color: #000000;
+}
+
+.input-container input:focus {
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+/* --- BOTÓN SOY MEDICO --- */
+
+.btn-medico {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    z-index: 10;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.55);
+    color: #222222;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-medico:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- IMÁGENES DE FONDO --- */
+
 .imagen1crearcuenta {  
     position: absolute;
     top: 0;
     right: 0;
     z-index: 1;
     pointer-events: none;
-    transform: rotate(25deg) translateX(0vw) translateY(-5vh);
+    transform: rotate(25deg) translateX(-5vw) translateY(-10vh);
 }
 
 .imagen1crearcuenta img {
-    width: 45vw;
-    height: 55vh;
+    width: 50vw;
+    height: 65vh;
     object-fit: cover;
-    opacity: 0.25;
+    opacity: 0.20;
     border-radius: 45px;
 }
 
@@ -72,16 +213,31 @@ body {
     right: 5vw;
     z-index: 1;
     pointer-events: none;
-    transform: rotate(-25deg) translateX(5vw) translateY(5vh);
+    transform: rotate(-25deg) translateX(5vw) translateY(10vh);
 }
 
 .imagen2crearcuenta img {
     width: 45vw;
-    height: 55vh;
+    height: 60vh;
     object-fit: cover;
-    opacity: 0.25;
+    opacity: 0.20;
     border-radius: 45px;
-
 }
 
+.imagen4crearcuenta {  
+    position: absolute;
+    bottom: -10vh;
+    right: 5vw;
+    z-index: 1;
+    pointer-events: none;
+    transform: rotate(-20deg) translateX(-55vw) translateY(-67vh);
+}
+
+.imagen4crearcuenta img {
+    width: 35vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 0.20;
+    border-radius: 45px;
+}
 </style>
