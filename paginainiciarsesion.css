@@ -123,11 +123,11 @@ position: relative;
   position: absolute;
   top: 0;
   left: 0;
-  width: 85%;
-  height: 122%;
+  width: 80%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
-  transform: rotate(38deg)translateX(0rem)translateY(30rem);
+  transform: rotate(20deg)translateX(10rem)translateY(30rem);
   
 }
 
@@ -142,15 +142,33 @@ position: relative;
   position: absolute;
   top: 0;
   left: 0;
-  width: 85%;
-  height: 122%;
+  width: 80%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
-  transform: rotate(38deg)translateX(0rem)translateY(10rem);
+  transform: rotate(-30deg)translateX(-5rem)translateY(-20rem);
   
 }
 
 .imagen2iniciarsesion img {
+  width: 53%;
+  height: 68%;
+  opacity: 0.25;
+  border-radius: 67px;
+}
+
+.imagen3iniciarsesion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(20deg)translateX(10rem)translateY(40rem);
+}
+
+.imagen3iniciarsesion img {
   width: 53%;
   height: 68%;
   opacity: 0.25;
