@@ -4,10 +4,10 @@
     
 </head>
 <body>
-    
+    <section class="separar">
     <a href="paginaprincipalanto.html" class="Inicio">ReSport+</a>
-    <a href="preguntasparausuariosnormales.html" class="Siguiente">Siguiente</a>
-
+</section>
+<a href="preguntasparausuariosnormales.html" class="Siguiente">Siguiente</a>
     <main class="contenedor-formulario">
         <h2>Crear cuenta:</h2>
         <form action="#">
@@ -80,12 +80,15 @@
             position: relative;
         }
 
+
+        .separar {
+            padding: 1.25rem;
+        }
+
         .Inicio {
             font-weight: 350;
             font-size: 3rem;
             color: #ffffff;
-            margin-left: 2vw;
-            margin-top: 1vh;
             text-decoration: none;
             cursor: pointer;
             position: relative;
@@ -259,20 +262,19 @@
             border-radius: 2.8rem;
         }
 
-        .Siguiente { 
-            position: absolute;
-            bottom: 3vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            padding: 1.4vh 1.6vw;
-            border: none;
-            border-radius: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.55);
-            color: #000;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            text-decoration: none;
-        }
+.Siguiente {
+    position: absolute;
+    bottom: 20vh; /* Cambia este número si lo querés más arriba o abajo */
+    left: 50%;
+    transform: translateX(-50%); /* Estos dos trucos lo centran horizontalmente */
+    z-index: 10;
+    padding: 1.4vh 1.6vw;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.55);
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
     </style>
