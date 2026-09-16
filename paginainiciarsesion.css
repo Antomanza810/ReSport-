@@ -1,176 +1,147 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 1vh;
-  }
-
-
-body {
-    background-color: #888888;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; /* Cambiado a 0 para evitar desplazamientos del layout */
 }
 
+html, body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #888888;
+  overflow: hidden; /* Garantiza que nada sobrepase la pantalla */
+  position: relative;
+}
 
 .contenedortitulo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2vh;
 }
-
 
 .logo {
-    font-weight: 600;
-    font-size: 4rem;
-    color: #000;
-    font-family: 'Arial', sans-serif;
-    font-weight: 100;
-  }
-
+  font-size: 5rem;
+  color: #000;
+  font-family: 'Arial', sans-serif;
+  font-weight: 100;
+}
 
 .textito {
-    font-weight: 300;
-    font-size: 2rem;
-    color: #000;
-    font-family: 'Arial', sans-serif;
-    font-weight: 100;
-  }
-
-
-  .contenedorregistrarse {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-
-
-  }
-
-
-.rectanguloregistrarse {
-position: relative;
+  font-size: 2.5rem;
+  color: #000;
+  font-family: 'Arial', sans-serif;
+  font-weight: 100;
 }
+
+/* --- BOTONES ESQUINAS --- */
 
 .registrarse {
-    background-color: white;
-    color: #000;
-    width: 17vw;
-    font-weight: 20;
-    height: 7vh;
-    font-size: 5vh;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    border-radius: 0.5rem;
-
-
-    position: absolute;
-    top: -20vh;
-    right: 2vw;
-    text-align: center;
-
-}
-
-input {
-    display: block;
-    margin: 1rem auto;
-
-    width: 30vw;
-    height: 7vh;
-    border-radius: 0.5rem;
-    border: #000 1rem;
-}
-
-button {
-    display: block;
-    margin: 1rem auto;
-    width: 15vw;
-    height: 7vh;
-    border-radius: 0.5rem;
-}
-
-
-.contenedormedico {
-  display: flex;
-  justify-content: end;
-  align-items: end;
-
-
-}
-
-
-.rectangulomedico {
-position: relative;
+  background-color: white;
+  color: #000;
+  padding: 0.5vh 1vw;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 3vh;
+  right: 2vw;
+  z-index: 10;
+  width: 12vw;
+  height: 5vh;
 }
 
 .medico {
   background-color: white;
   color: #000;
-  width: 17vw;
-  font-weight: 20;
-  height: 7vh;
-  font-size: 5vh;
+  padding: 0.5vh 1vw;
+  font-size: 1.2rem;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   border-radius: 0.5rem;
-
-
   position: absolute;
-  top: 25vh;
+  bottom: 3vh;
   right: 2vw;
-  text-align: center;
-
+  z-index: 10;
+  width: 12vw;
+  height: 5vh;
 }
 
-.imagen1iniciarsesion {
+/* --- FORMULARIO CENTRADO --- */
+
+input {
+  display: block;
+  margin: 1rem auto;
+  width: 28vw;
+  min-width: 250px;
+  height: 6vh;
+  border-radius: 0.8rem;
+  border: none;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+button {
+  display: block;
+  margin: 1rem auto;
+  width: 12vw;
+  min-width: 120px;
+  height: 6vh;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- IMÁGENES DE FONDO AJUSTADAS --- */
+
+.imagen1iniciarsesion,
+.imagen2iniciarsesion,
+.imagen3iniciarsesion,
+.imagen4iniciarsesion {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 100%;
   z-index: 0;
   pointer-events: none;
-  transform: rotate(20deg)translateX(10rem)translateY(30rem);
-  
 }
 
-.imagen1iniciarsesion img {
-  width: 53%;
-  height: 68%;
+.imagen1iniciarsesion img,
+.imagen2iniciarsesion img,
+.imagen3iniciarsesion img,
+.imagen4iniciarsesion img {
   opacity: 0.25;
-  border-radius: 67px;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+/* Posiciones proporcionales en %/vw/vh en lugar de rems altos */
+.imagen1iniciarsesion {
+  top: 30vh;
+  left: -5vw;
+  transform: rotate(20deg);
+}
+.imagen1iniciarsesion img { 
+  width: 45vw; 
+  height: 70vh; 
 }
 
 .imagen2iniciarsesion {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  transform: rotate(-30deg)translateX(-5rem)translateY(-20rem);
-  
+  top: -10vh;
+  left: -5vw;
+  transform: rotate(-30deg);
 }
-
-.imagen2iniciarsesion img {
-  width: 53%;
-  height: 68%;
-  opacity: 0.25;
-  border-radius: 67px;
-}
+.imagen2iniciarsesion img { width: 45vw; height: 70vh; }
 
 .imagen3iniciarsesion {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  transform: rotate(20deg)translateX(10rem)translateY(40rem);
+  bottom: -10vh;
+  right: -5vw;
+  transform: rotate(-20deg);
 }
+.imagen3iniciarsesion img { width: 45vw; height: 70vh; }
 
-.imagen3iniciarsesion img {
-  width: 53%;
-  height: 68%;
-  opacity: 0.25;
-  border-radius: 67px;
+.imagen4iniciarsesion {
+  top: -10vh;
+  right: -5vw;
+  transform: rotate(20deg);
 }
+.imagen4iniciarsesion img { width: 45vw; height: 70vh; }
