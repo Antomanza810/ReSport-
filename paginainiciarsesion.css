@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 1vh;
+  }
+
+
+body {
+    background-color: #888888;
+}
+
+
+.contenedortitulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.logo {
+    font-weight: 600;
+    font-size: 4rem;
+    color: #000;
+    font-family: 'Arial', sans-serif;
+    font-weight: 100;
+  }
+
+
+.textito {
+    font-weight: 300;
+    font-size: 2rem;
+    color: #000;
+    font-family: 'Arial', sans-serif;
+    font-weight: 100;
+  }
+
+
+  .contenedorregistrarse {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
+
+  }
+
+
+.rectanguloregistrarse {
+position: relative;
+}
+
+.registrarse {
+    background-color: white;
+    color: #000;
+    width: 17vw;
+    font-weight: 20;
+    height: 7vh;
+    font-size: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    border-radius: 0.5rem;
+
+
+    position: absolute;
+    top: -20vh;
+    right: 2vw;
+    text-align: center;
+
+}
+
+input {
+    display: block;
+    margin: 1rem auto;
+
+    width: 30vw;
+    height: 7vh;
+    border-radius: 0.5rem;
+    border: #000 1rem;
+}
+
+button {
+    display: block;
+    margin: 1rem auto;
+    width: 15vw;
+    height: 7vh;
+}
