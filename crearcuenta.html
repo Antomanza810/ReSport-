@@ -6,25 +6,82 @@
     <title>Crear Cuenta</title>
 </head>
 <body>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap" rel="stylesheet">
-    <h1>ReSport+</h1>
+   
+<a href="paginaprincipalanto.html" class="Inicio">ReSport+</a>
+
+<section class="imagen2crearcuenta">
+    <img src="https://www.basic-fit.com/on/demandware.static/-/Library-Sites-basic-fit-shared-library/default/dw16c1178a/Blogs/New%20fitness%20routine/Landscape-BasicFit%20Tilburg%2026-8-2114052.jpg" alt="imagen2crearcuenta">
+</section>
+<section class="imagen1crearcuenta">
+    <img src="https://img.asmedia.epimg.net/resizer/v2/WLNK6KSK6RCRTAWMFY7TN6ANQY.jpg?auth=167c001e33907445cbbd39dfd91dfcd7d57d86ec097082d196af212c82a82d80&width=1200&height=1200&smart=true" alt="imagen1crearcuenta">
+</section>
+
+
+
 </body>
 </html>
 
+
 <style>
-    *{
-        background-color: #888888;
-        padding: 0;
-        margin: 0;
-    }
-.h1{
-    font-family: 'Manrope', sans-serif;
-  font-weight: 400;
-  font-size: 170px;
-  line-height: normal;
-  letter-spacing: 0;
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #888888;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+.Inicio {
+    font-weight: 350;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-left: 2vw;
+    margin-top: 1vh;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+/* Imagen Superior (Mujer) */
+.imagen1crearcuenta {  
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    pointer-events: none;
+    transform: rotate(25deg) translateX(0vw) translateY(-5vh);
+}
+
+.imagen1crearcuenta img {
+    width: 45vw;
+    height: 55vh;
+    object-fit: cover;
+    opacity: 0.25;
+    border-radius: 45px;
+}
+
+.imagen2crearcuenta {  
+    position: absolute;
+    bottom: -10vh;
+    right: 5vw;
+    z-index: 1;
+    pointer-events: none;
+    transform: rotate(-25deg) translateX(5vw) translateY(5vh);
+}
+
+.imagen2crearcuenta img {
+    width: 45vw;
+    height: 55vh;
+    object-fit: cover;
+    opacity: 0.25;
+    border-radius: 45px;
 
 }
+
 </style>
