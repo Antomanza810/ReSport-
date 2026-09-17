@@ -1,7 +1,8 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0; /* Cambiado a 0 para evitar desplazamientos del layout */
+  padding: 0;
+  outline: none;
 }
 
 html, body {
@@ -32,6 +33,7 @@ html, body {
   color: #000;
   font-family: 'Arial', sans-serif;
   font-weight: 100;
+  align-items: center;
 }
 
 /* --- BOTONES ESQUINAS --- */
@@ -72,19 +74,20 @@ html, body {
 
 input {
   display: block;
-  margin: 1rem auto;
+  margin: 3rem auto;
   width: 28vw;
   min-width: 250px;
-  height: 6vh;
+  height: 8vh;
   border-radius: 0.8rem;
   border: none;
   padding: 0 1rem;
   font-size: 1rem;
+  background-color: #d9d9d9;
 }
 
 button {
   display: block;
-  margin: 1rem auto;
+  margin: 2rem auto;
   width: 12vw;
   min-width: 120px;
   height: 6vh;
@@ -94,7 +97,7 @@ button {
   font-weight: bold;
 }
 
-/* --- IMÁGENES DE FONDO AJUSTADAS --- */
+
 
 .imagen1iniciarsesion,
 .imagen2iniciarsesion,
@@ -112,36 +115,32 @@ button {
   opacity: 0.25;
   border-radius: 40px;
   object-fit: cover;
+  width: 50vw;
+  height: 80vh;
 }
 
 /* Posiciones proporcionales en %/vw/vh en lugar de rems altos */
 .imagen1iniciarsesion {
   top: 30vh;
   left: -5vw;
-  transform: rotate(20deg);
+  transform: rotate(20deg)translateY(5rem);
 }
-.imagen1iniciarsesion img { 
-  width: 45vw; 
-  height: 70vh; 
-}
+
 
 .imagen2iniciarsesion {
   top: -10vh;
   left: -5vw;
-  transform: rotate(-30deg);
+  transform: rotate(-15deg)translateY(0rem);
 }
-.imagen2iniciarsesion img { width: 45vw; height: 70vh; }
 
 .imagen3iniciarsesion {
   bottom: -10vh;
   right: -5vw;
-  transform: rotate(-20deg);
+  transform: rotate(-20deg)translateY(5rem)translateX(-5rem);
 }
-.imagen3iniciarsesion img { width: 45vw; height: 70vh; }
 
 .imagen4iniciarsesion {
   top: -10vh;
   right: -5vw;
   transform: rotate(20deg);
 }
-.imagen4iniciarsesion img { width: 45vw; height: 70vh; }
