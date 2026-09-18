@@ -17,14 +17,17 @@ body {
   flex-direction: column;
 }
 
+/* Header principal */
 .cuadradoresport {
-  height: 4rem;
+  height: 4.5rem; /* Ajustá la altura de la barra superior si querés */
   width: 100%;
   background-color: var(--header-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 2.5rem;
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
@@ -35,32 +38,36 @@ body {
 
 .contenedor-botones {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
-.CrearCuenta {
-  text-decoration: none;
-  color: #000;
-  border: 0.125rem solid #000;
-  border-radius: 0.5rem;
-  padding: 0.4rem 1rem;
-  font-size: 0.95rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  font-weight: 500;
-  cursor:pointer;
-  
-}
-
+/* Botones: cambiá 'height' y 'width' acá sin que se traben */
+.CrearCuenta,
 .IniciarSesion {
   text-decoration: none;
   color: #000;
-  border: 0.125rem solid #000;
+  border: 0.2rem solid #000;
   border-radius: 0.5rem;
-  padding: 0.4rem 1rem;
-  font-size: 0.95rem;
-  background-color: #FFCE1C;
-  font-weight: 500;
+  /* ALTURA Y ANCHO MANUALE S */
+  height: 2.8rem; /* Modificá este valor para cambiar la altura */
+  width: 11rem;   /* Modificá este valor para cambiar el ancho */
+  padding: 0 1rem; /* Mantiene 0 arriba/abajo para no bloquear el height */
+  
+  font-size: 1.4rem;
+  font-weight: 100;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CrearCuenta {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.IniciarSesion {
+  background-color: #FFCE1C;
 }
 
 /* Contenido Principal */
@@ -74,7 +81,7 @@ body {
   overflow: hidden;
 }
 
-/* Imagen de fondo que cubre toda la sección principal */
+/* Imágenes de fondo decorativas */
 .imagen1 {
   position: absolute;
   top: 0;
@@ -84,7 +91,6 @@ body {
   z-index: 0;
   pointer-events: none;
   transform: rotate(10deg) translateY(-5rem);
-  
 }
 
 .imagen1 img {
@@ -103,7 +109,6 @@ body {
   z-index: 0;
   pointer-events: none;
   transform: rotate(-28deg) translateY(30rem) translateX(10rem);
-  
 }
 
 .imagen2 img {
@@ -122,7 +127,6 @@ body {
   z-index: 0;
   pointer-events: none;
   transform: rotate(28deg) translateY(25rem) translateX(7rem);
-  
 }
 
 .imagen3 img {
@@ -140,8 +144,7 @@ body {
   height: 68%;
   z-index: 0;
   pointer-events: none;
-  transform: rotate(14deg)translateX(50rem)translateY(-20rem);
-  
+  transform: rotate(14deg) translateX(50rem) translateY(-20rem);
 }
 
 .imagen4 img {
@@ -159,8 +162,7 @@ body {
   height: 122%;
   z-index: 0;
   pointer-events: none;
-  transform: rotate(-38deg)translateX(60rem)translateY(40rem);
-  
+  transform: rotate(-38deg) translateX(60rem) translateY(40rem);
 }
 
 .imagen5 img {
@@ -169,6 +171,7 @@ body {
   opacity: 0.25;
   border-radius: 67px;
 }
+
 .texto-hero {
   max-width: 26rem;
   color: #ffffff;
@@ -181,15 +184,15 @@ body {
   margin-bottom: 1.25rem;
   font-weight: 790;
   text-transform: uppercase;
-  width: 100vw;
-  transform:translateY(-3rem);
+  width: 100%;
+  transform: translateY(-1rem);
 }
 
 .texto-hero p {
   font-size: 0.95rem;
   line-height: 1.5;
   color: #e0e0e0;
-  transform: translateY(-3rem);
+  transform: translateY(-1rem);
 }
 
 .contenedordeiphone {
@@ -204,8 +207,8 @@ body {
 
 .Iphone17izquierda,
 .Iphone17derecha {
-  width: 14rem;
-  height: 28rem;
+  width: 17rem;
+  height: 35rem;
   background-color: #ffffff;
   border: 0.25rem solid #000000;
   border-radius: 2.25rem;
@@ -221,19 +224,19 @@ body {
 .Iphone17izquierda {
   transform: rotate(-20deg);
   left: -10rem;
-  z-index: 2; /* Mayor nivel para superponerlo */
+  z-index: 2;
 }
 
 /* Celular Derecho (detrás) */
 .Iphone17derecha {
   transform: rotate(17deg);
   right: 1rem;
-  z-index: 1; /* Menor nivel para enviarlo atrás */
+  z-index: 1;
 }
 
 .camarita {
   background-color: #000000;
-  width: 3.5rem;
-  height: 1.2rem;
+  width: 4.5vw;
+  height: 1.3rem;
   border-radius: 0.6rem;
 }

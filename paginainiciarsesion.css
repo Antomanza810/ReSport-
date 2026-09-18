@@ -4,6 +4,9 @@
   padding: 0;
   outline: none;
 }
+.email-pasword-ingresar{
+  margin-top: 2vh;
+}
 
 html, body {
   width: 100vw;
@@ -18,26 +21,26 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 7vh;
+  margin-top: 5vh;
     position: relative;
     z-index: 2; /* Los ubica arriba de las imágenes */
 
 }
 
 .logo {
-  font-size: 5rem;
+  font-size: 6rem;
   color: #000;
   font-family: 'Arial', sans-serif;
   font-weight: 100;
 }
 
 .textito {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #000;
   font-family: 'Arial', sans-serif;
   font-weight: 100;
   align-items: center;
-  margin: 1rem auto;
+  margin: 3rem auto;
 }
 
 /* --- BOTONES ESQUINAS --- */
@@ -88,31 +91,31 @@ html, body {
 
 input {
   display: block;
-  margin: 1rem auto;
-  width: 28vw;
+  margin: 1.5rem auto;
+  width: 42vw;
   min-width: 250px;
-  height: 8vh;
+  height: 10vh;
   border-radius: 0.8rem;
   border: none;
   padding: 0 1rem;
-  font-size: 1rem;
+  font-size: 1.8rem;
   background-color: #d9d9d9;
-  opacity: 1;
 }
 
 button {
   display: block;
-  margin: 2rem auto;
-  width: 12vw;
+  margin: 4rem auto;
+  width: 20vw;
   min-width: 120px;
-  height: 6vh;
+  height: 8vh;
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  font-weight: bold;
-
+  font-weight: 200;
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 2rem;
 }
 
 
