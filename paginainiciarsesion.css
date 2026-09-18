@@ -1,4 +1,4 @@
-* {
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -18,7 +18,10 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 2vh;
+  margin-top: 7vh;
+    position: relative;
+    z-index: 2; /* Los ubica arriba de las imágenes */
+
 }
 
 .logo {
@@ -34,47 +37,58 @@ html, body {
   font-family: 'Arial', sans-serif;
   font-weight: 100;
   align-items: center;
+  margin: 1rem auto;
 }
 
 /* --- BOTONES ESQUINAS --- */
-
-.registrarse {
-  background-color: white;
-  color: #000;
-  padding: 0.5vh 1vw;
-  font-size: 1.2rem;
-  font-family: Arial, Helvetica, sans-serif;
-  text-decoration: none;
+.contenedorregistrarse{
+  width: 16vw;
+  height: 7vh;
   border-radius: 0.5rem;
   position: absolute;
   top: 3vh;
   right: 2vw;
   z-index: 10;
-  width: 12vw;
-  height: 5vh;
+  background-color: #d9d9d9;
+  padding: 0.5vh 1vw;
+ display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.medico {
-  background-color: white;
+.registrarse {
   color: #000;
-  padding: 0.5vh 1vw;
-  font-size: 1.2rem;
+  font-size: 2.5vw;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
+}
+
+.contenedormedico{
+  background-color: #d9d9d9;
+  padding: 0.5vh 1vw;
   border-radius: 0.5rem;
   position: absolute;
   bottom: 3vh;
   right: 2vw;
   z-index: 10;
-  width: 12vw;
-  height: 5vh;
+  width: 15vw;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.medico {
+  color: #000;
+  font-size: 2.3vw;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
 }
 
 /* --- FORMULARIO CENTRADO --- */
 
 input {
   display: block;
-  margin: 3rem auto;
+  margin: 1rem auto;
   width: 28vw;
   min-width: 250px;
   height: 8vh;
@@ -83,6 +97,7 @@ input {
   padding: 0 1rem;
   font-size: 1rem;
   background-color: #d9d9d9;
+  opacity: 1;
 }
 
 button {
@@ -95,6 +110,9 @@ button {
   border: none;
   cursor: pointer;
   font-weight: bold;
+
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -143,4 +161,9 @@ button {
   top: -10vh;
   right: -5vw;
   transform: rotate(20deg);
+}
+
+input, button {
+  position: relative;
+  z-index: 2;
 }
