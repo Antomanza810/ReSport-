@@ -1,0 +1,22 @@
+{
+  "name": "ReSport-",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto de Antonio, Dante, Matias y Noah",
+  "type": "module",
+  "scripts": {
+    "start": "tsx Proyecto.ts",
+    "dev": "tsx --watch Proyecto.ts",
+    "test": "node --import tsx --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "open": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -47,11 +47,37 @@
     <script>
         const form = document.getElementById('form-edad');
         const inputs = form.querySelectorAll('input[type="radio"]');
+        const emailUsuario = localStorage.getItem('usuarioEmail');
+
+        const guardarEdad = async (respuesta) => {
+            if (!emailUsuario) {
+                localStorage.setItem('edadUsuario', respuesta);
+                return;
+            }
+
+            const response = await fetch(`/usuarios/${encodeURIComponent(emailUsuario)}/respuestas`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ edad: respuesta }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error(data.message || 'No se pudo guardar la respuesta.');
+                return;
+            }
+
+            localStorage.setItem('edadUsuario', respuesta);
+            console.log(data.message);
+        };
 
         inputs.forEach(input => {
             input.addEventListener('change', () => {
                 const respuesta = input.value;
-                localStorage.setItem('edadUsuario', respuesta);
+                guardarEdad(respuesta);
             });
         });
     </script>

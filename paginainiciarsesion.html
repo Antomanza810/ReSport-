@@ -27,14 +27,45 @@
     <h2 class="textito">Evolucioná a tu propio ritmo</h2>
     </section>
     <section class="email-pasword-ingresar">
-    <form>
-        <input type="email" placeholder="Correo electrónico">
+    <form id="loginForm">
+        <input id="emailInput" type="email" placeholder="Correo electrónico" required>
       
-        <input type="password" placeholder="Contraseña">
+        <input id="passwordInput" type="password" placeholder="Contraseña" required>
       
         <button type="submit">INGRESAR</button>
       </form>
 </section>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const payload = {
+            email: document.getElementById('emailInput').value,
+            contraseña: document.getElementById('passwordInput').value,
+        };
+
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || 'No se pudo iniciar sesión.');
+            return;
+        }
+
+        localStorage.setItem('usuarioEmail', data.usuario.email);
+        window.location.href = 'pregunta1usuarionormal.html';
+    });
+</script>
 
 
 <section class="contenedorregistrarse">

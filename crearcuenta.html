@@ -10,39 +10,73 @@
 <a href="pregunta1usuarionormal.html" class="Siguiente">Siguiente</a>
     <main class="contenedor-formulario">
         <h2>Crear cuenta:</h2>
-        <form action="#">
-            
+        <form id="crearCuentaForm">
             <div class="input-container">
-                <input type="email" id="email" placeholder=" " required>
+                <input type="email" id="email" name="email" placeholder=" " required>
                 <label for="email"><span class="label-title">Email:</span> ingresá tu mail</label>
             </div>
 
             <div class="input-container">
-                <input type="text" id="nombre" placeholder=" " required>
+                <input type="text" id="nombre" name="nombre" placeholder=" " required>
                 <label for="nombre"><span class="label-title">Nombre:</span> ingresá tu nombre</label>
             </div>
 
             <div class="input-container">
-                <input type="text" id="apellido" placeholder=" " required>
+                <input type="text" id="apellido" name="apellido" placeholder=" " required>
                 <label for="apellido"><span class="label-title">Apellido:</span> ingresá tu apellido</label>
             </div>
 
             <div class="input-container">
-                <input type="password" id="password" placeholder=" " required>
+                <input type="password" id="password" name="contraseña" placeholder=" " required>
                 <label for="password"><span class="label-title">contraseña:</span> Ingresá tu contraseña</label>
             </div>
 
             <div class="input-container">
-                <input type="password" id="confirm-password" placeholder=" " required>
+                <input type="password" id="confirm-password" name="comfirmarContraseña" placeholder=" " required>
                 <label for="confirm-password"><span class="label-title">confirmar contraseña:</span> Repita la contraseña</label>
             </div>
 
             <div class="input-container">
-                <input type="text" id="dni" placeholder=" " required>
+                <input type="text" id="dni" name="DNI" placeholder=" " required>
                 <label for="dni"><span class="label-title">Dni:</span> ingresá tu dni</label>
             </div>
 
+            <button type="submit" class="btn-medico">Crear cuenta</button>
         </form>
+
+        <script>
+            const formulario = document.getElementById('crearCuentaForm');
+
+            formulario.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const usuario = {
+                    email: document.getElementById('email').value,
+                    nombre: document.getElementById('nombre').value,
+                    apellido: document.getElementById('apellido').value,
+                    contraseña: document.getElementById('password').value,
+                    comfirmarContraseña: document.getElementById('confirm-password').value,
+                    DNI: Number(document.getElementById('dni').value),
+                };
+
+                const respuesta = await fetch('/usuarios', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(usuario)
+                });
+
+                const resultado = await respuesta.json();
+                alert(resultado.message || 'Usuario creado');
+
+                if (respuesta.ok) {
+                    localStorage.setItem('usuarioEmail', usuario.email);
+                    formulario.reset();
+                    window.location.href = 'paginainiciarsesion.html';
+                }
+            });
+        </script>
     </main>
 
     <a href="preguntasparamedicos.html" class="btn-medico">Soy Médico</a>
