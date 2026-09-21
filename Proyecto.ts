@@ -2,6 +2,7 @@ import express from 'express';
 import type { Express, Request, Response } from 'express';
 import open from 'open';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 type Usuario = {
   email: string;
@@ -39,7 +40,8 @@ app.use(express.json());
 app.use(express.static('.'));
 
 app.get('/', (_req: Request, res: Response) => {
-  res.sendFile(new URL('./crearcuenta.html', import.meta.url));
+  const filePath = fileURLToPath(new URL('./crearcuenta.html', import.meta.url));
+  res.sendFile(filePath);
 });
 
 app.get('/usuarios', (_req: Request, res: Response) => {
