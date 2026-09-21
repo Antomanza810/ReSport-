@@ -12,6 +12,10 @@ type Usuario = {
   numeroDeTelefono?: string;
   DNI: number;
   comfirmarContraseña: string;
+  respuestas?: {
+    [key: string]: string | undefined;
+    edad?: string;
+  };
 };
 
 const usuariosPath = new URL('./usuarios.JSON', import.meta.url);
@@ -36,6 +40,11 @@ const guardarUsuarios = (usuarios: Usuario[]) => {
   writeFileSync(usuariosPath, JSON.stringify(usuarios, null, 2), 'utf-8');
 };
 
+const obtenerUsuarioPorEmail = (email: string): Usuario | undefined => {
+  const usuarios = leerUsuarios();
+  return usuarios.find((usuario) => usuario.email.toLowerCase() === email.toLowerCase());
+};
+
 app.use(express.json());
 app.use(express.static('.'));
 
@@ -46,6 +55,60 @@ app.get('/', (_req: Request, res: Response) => {
 
 app.get('/usuarios', (_req: Request, res: Response) => {
   res.json(leerUsuarios());
+});
+
+app.post('/login', (req: Request, res: Response) => {
+  const { email, contraseña } = req.body as { email?: string; contraseña?: string };
+
+  if (!email || !contraseña) {
+    return res.status(400).json({ message: 'Email y contraseña son obligatorios.' });
+  }
+
+  const usuario = obtenerUsuarioPorEmail(email);
+
+  if (!usuario || usuario.contraseña !== contraseña) {
+    return res.status(401).json({ message: 'Email o contraseña incorrectos.' });
+  }
+
+  const { contraseña: _contraseña, comfirmarContraseña: _comfirmarContraseña, ...usuarioSeguro } = usuario;
+
+  return res.status(200).json({
+    message: 'Login correcto.',
+    usuario: usuarioSeguro,
+  });
+});
+
+app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
+  const email = decodeURIComponent(req.params.email);
+  const { edad, ...otrasRespuestas } = req.body as { edad?: string; [key: string]: string | undefined };
+
+  if (!edad) {
+    return res.status(400).json({ message: 'La respuesta de edad es obligatoria.' });
+  }
+
+  const usuarios = leerUsuarios();
+  const index = usuarios.findIndex((usuario) => usuario.email.toLowerCase() === email.toLowerCase());
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Usuario no encontrado.' });
+  }
+
+  const usuarioActualizado: Usuario = {
+    ...usuarios[index],
+    respuestas: {
+      ...(usuarios[index].respuestas ?? {}),
+      edad,
+      ...otrasRespuestas,
+    },
+  };
+
+  usuarios[index] = usuarioActualizado;
+  guardarUsuarios(usuarios);
+
+  return res.status(200).json({
+    message: 'Respuestas guardadas correctamente.',
+    usuario: usuarioActualizado,
+  });
 });
 
 app.post('/usuarios', (req: Request, res: Response) => {
@@ -73,6 +136,7 @@ app.post('/usuarios', (req: Request, res: Response) => {
     numeroDeTelefono: usuario.numeroDeTelefono ? String(usuario.numeroDeTelefono) : undefined,
     DNI,
     comfirmarContraseña: String(usuario.comfirmarContraseña),
+    respuestas: {},
   };
 
   const usuarios = leerUsuarios();

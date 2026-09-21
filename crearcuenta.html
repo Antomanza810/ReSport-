@@ -71,7 +71,9 @@
                 alert(resultado.message || 'Usuario creado');
 
                 if (respuesta.ok) {
+                    localStorage.setItem('usuarioEmail', usuario.email);
                     formulario.reset();
+                    window.location.href = 'paginainiciarsesion.html';
                 }
             });
         </script>

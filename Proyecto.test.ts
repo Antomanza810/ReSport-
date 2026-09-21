@@ -82,3 +82,63 @@ test('POST /usuarios rechaza contraseñas que no coinciden', async (t) => {
 
   server.close();
 });
+
+test('POST /login devuelve el usuario correcto y POST /usuarios/:email/respuestas guarda la edad', async (t) => {
+  const usuariosIniciales = [
+    {
+      email: 'login@mail.com',
+      contraseña: 'abc123',
+      nombre: 'Login',
+      apellido: 'User',
+      DNI: 11111111,
+      comfirmarContraseña: 'abc123',
+      respuestas: {},
+    },
+  ];
+
+  writeFileSync(usuariosPath, JSON.stringify(usuariosIniciales, null, 2), 'utf-8');
+
+  t.after(() => {
+    writeFileSync(usuariosPath, originalUsers, 'utf-8');
+  });
+
+  const server = app.listen(0);
+  await once(server, 'listening');
+
+  const port = (server.address() as AddressInfo).port;
+
+  const loginResponse = await fetch(`http://127.0.0.1:${port}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: 'login@mail.com',
+      contraseña: 'abc123',
+    }),
+  });
+
+  const loginBody = await loginResponse.json();
+
+  assert.equal(loginResponse.status, 200);
+  assert.equal(loginBody.usuario.email, 'login@mail.com');
+
+  const respuestaResponse = await fetch(`http://127.0.0.1:${port}/usuarios/login@mail.com/respuestas`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      edad: '24-29',
+    }),
+  });
+
+  const respuestaBody = await respuestaResponse.json();
+  const usuariosGuardados = JSON.parse(readFileSync(usuariosPath, 'utf-8'));
+
+  assert.equal(respuestaResponse.status, 200);
+  assert.equal(respuestaBody.message, 'Respuestas guardadas correctamente.');
+  assert.equal(usuariosGuardados[0].respuestas.edad, '24-29');
+
+  server.close();
+});
