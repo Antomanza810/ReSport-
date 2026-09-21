@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "tsx Proyecto.ts",
-    "dev": "tsx --watch Proyecto.ts"
+    "dev": "tsx --watch Proyecto.ts",
+    "test": "node --import tsx --test"
   },
   "dependencies": {
     "express": "^4.21.2",
