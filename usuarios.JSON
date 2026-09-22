@@ -1,11 +1,13 @@
 [
   {
-    "email": "50704585@est.ort.edu.ar",
+    "email": "antomanza810@gmail.com",
     "contraseña": "235689",
-    "nombre": "ANTONIO",
-    "apellido": "STEFANI",
+    "nombre": "Antonio",
+    "apellido": "Stefani",
     "DNI": 50704585,
     "comfirmarContraseña": "235689",
-    "respuestas": {}
+    "respuestas": {
+      "edad": "18-23"
+    }
   }
 ]

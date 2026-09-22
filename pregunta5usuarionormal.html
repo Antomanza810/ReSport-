@@ -46,15 +46,36 @@
     </main>
 
     <script>
-        const form = document.getElementById('form-edad');
-        const inputs = form.querySelectorAll('input[type="radio"]');
+     const form = document.getElementById('form-dias-duracion');
+    const emailUsuario = localStorage.getItem('usuarioEmail');
 
-        inputs.forEach(input => {
-            input.addEventListener('change', () => {
-                const respuesta = input.value;
-                localStorage.setItem('edadUsuario', respuesta);
-            });
-        });
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const respuestas = {
+        cantidaDiasEntrenamiento: formData.get('cantidaDiasEntrenamiento'),
+        duracionEntrenamiento: formData.get('duracionEntrenamiento'),
+      };
+
+      const response = await fetch(`/usuarios/${encodeURIComponent(emailUsuario)}/respuestas`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(respuestas),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || 'No se pudo guardar las respuestas.');
+        return;
+      }
+
+      alert('Respuestas guardadas correctamente.');
+      window.location.href = 'paginaconcuenta.html';
+    });
     </script>
 <section class="navegacion-inferior">
     <a href="pregunta4usuarionormal.html" class="boton-volver">

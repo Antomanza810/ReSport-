@@ -85,11 +85,16 @@ app.post('/login', (req: Request, res: Response) => {
 });
 
 app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
-  const email = decodeURIComponent(req.params.email);
-  const respuestas = req.body as { [key: string]: string | undefined };
+  const email = decodeURIComponent(req.params.email as string);
+  const respuestas = req.body as {
+    [key: string]: string | undefined;
+    edad?: string;
+    duracionEntrenamiento?: string;
+    cantidaDiasEntrenamiento?: string;
+  };
 
-  if (!respuestas.edad) {
-    return res.status(400).json({ message: 'La respuesta de edad es obligatoria.' });
+  if (!respuestas.edad && !respuestas.duracionEntrenamiento && !respuestas.cantidaDiasEntrenamiento) {
+    return res.status(400).json({ message: 'Debe proporcionar al menos una respuesta.' });
   }
 
   const usuarios = leerUsuarios();
@@ -103,7 +108,7 @@ app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
     ...usuarios[index],
     respuestas: {
       ...(usuarios[index].respuestas ?? {}),
-      ...respuestas, // Merge all provided answers
+      ...respuestas,
     },
   };
 
