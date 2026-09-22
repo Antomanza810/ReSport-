@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReSport+</title>
+  
+  <link rel="stylesheet" href="paginaconcuenta.css">
+</head>
+<body>
+
+  <!-- Encabezado principal (Barra Superior) -->
+  <section class="top-header">
+    
+    <!-- Sección de Perfil / Usuario -->
+    <div class="header-section profile-section">
+      <button class="profile-btn" id="profileBtn" type="button">
+        <!-- Ícono por defecto (cabeza y cuerpo) -->
+        <div class="user-avatar-default" id="defaultAvatar">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+        <!-- Foto de perfil personalizada (oculta al inicio) -->
+        <img id="userPhoto" class="user-photo hidden" src="" alt="Foto de Perfil">
+      </button>
+
+      <div class="divider"></div>
+
+      <!-- Nombre del usuario -->
+      <div class="user-name" id="userNameDisplay">Nombre</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Título de la Aplicación (No modificable) -->
+    <div class="header-section app-title-section">
+      <div class="app-title">ReSport+</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Botón de Ajustes -->
+    <div class="header-section settings-section">
+      <button class="settings-btn" id="settingsBtn" type="button">
+        <!-- Imagen de ajustes (reemplaza 'settings.png' por la ruta de tu imagen) -->
+        <img src="settings.png" alt="Ajustes" class="settings-img">
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Modal 1: Formulario de Inicio de Sesión (DNI y Contraseña) -->
+  <div class="modal-overlay hidden" id="loginModal">
+    <div class="modal-box">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <div class="form-group">
+            <label for="emailInput">Correo electrónico:</label>
+            <input type="email" id="emailInput" required placeholder="Ingrese su mail">
+          </div>
+        <div class="form-group">
+          <label for="passwordInput">Contraseña:</label>
+          <input type="password" id="passwordInput" required placeholder="Ingrese su contraseña">
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary">Ingresar</button>
+          <button type="button" class="btn-secondary" id="closeLoginBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Edición del Perfil (Nombre y Foto) -->
+  <div class="modal-overlay hidden" id="editProfileModal">
+    <div class="modal-box">
+      <h2>Editar Perfil</h2>
+      <form id="editProfileForm">
+        <div class="form-group">
+          <label for="editNameInput">Nombre:</label>
+          <input type="text" id="editNameInput" required>
+        </div>
+        <div class="form-group">
+          <label for="editPhotoUrlInput">URL de la Foto:</label>
+          <input type="url" id="editPhotoUrlInput" required placeholder="https://ejemplo.com/foto.jpg">
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn-secondary" id="closeEditBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Enlace al archivo JavaScript externo -->
+  <script src="paginaconcuenta.js"></script>
+</body>
+</html>
