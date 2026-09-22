@@ -15,48 +15,43 @@
             <div class="barra-progreso-relleno"></div>
         </div>
 
-        <h2 class="pregunta-titulo">Cuan largo queres que sea tu entrenamiento?</h2>
+        <h2 class="pregunta-titulo">¿Qué intensidad preferís para tus entrenamientos?</h2>
 
-        <form id="form-edad" class="opciones-form">
+        <form id="form-intensidad" class="opciones-form">
             <label class="opcion-card">
-                <input type="radio" name="tiempo" value="15 minutos" required>
-                <span>15 minutos</span>
+                <input type="radio" name="intensidad" value="Baja" required>
+                <span>Baja</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="tiempo" value="30 minutos">
-                <span>30 minutos</span>
+                <input type="radio" name="intensidad" value="Moderada">
+                <span>Moderada</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="tiempo" value="45 minutos">
-                <span>45 minutos</span>
-            </label>
-
-            <label class="opcion-card">
-                <input type="radio" name="tiempo" value="60+ minutos">
-                <span>60+ minutos</span>
+                <input type="radio" name="intensidad" value="Alta">
+                <span>Alta</span>
             </label>
         </form>
     </main>
 
     <script>
-        const form = document.getElementById('form-edad');
+        const form = document.getElementById('form-intensidad');
         const inputs = form.querySelectorAll('input[type="radio"]');
 
         inputs.forEach(input => {
             input.addEventListener('change', () => {
                 const respuesta = input.value;
-                localStorage.setItem('edadUsuario', respuesta);
+                localStorage.setItem('intensidadUsuario', respuesta);
             });
         });
     </script>
-<section class="navegacion-inferior">
-    <a href="pregunta6usuarionormal.html" class="boton-volver">
-        <span class="material-icons icon-flecha">arrow_back</span>
-    </a>
-    <a href="paginaconcuenta.html" class="siguiente">Siguiente</a>
-</section>
+    <section class="navegacion-inferior">
+        <a href="pregunta6usuarionormal.html" class="boton-volver">
+            <span class="material-icons icon-flecha">arrow_back</span>
+        </a>
+        <a href="paginaconcuenta.html" class="siguiente">Siguiente</a>
+    </section>
 </body>
 </html>
 

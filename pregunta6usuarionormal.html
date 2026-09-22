@@ -15,48 +15,48 @@
             <div class="barra-progreso-relleno"></div>
         </div>
 
-        <h2 class="pregunta-titulo">Cuan largo queres que sea tu entrenamiento?</h2>
+        <h2 class="pregunta-titulo">¿Cuánto tiempo querés que dure tu entrenamiento?</h2>
 
-        <form id="form-edad" class="opciones-form">
+        <form id="form-duracion" class="opciones-form">
             <label class="opcion-card">
-                <input type="radio" name="genero" value="Masculino" required>
-                <span>Masculino</span>
+                <input type="radio" name="duracion" value="15 minutos" required>
+                <span>15 minutos</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="genero" value="Femenino">
-                <span>Femenino</span>
+                <input type="radio" name="duracion" value="30 minutos">
+                <span>30 minutos</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="genero" value="No binario">
-                <span>No binario</span>
+                <input type="radio" name="duracion" value="45 minutos">
+                <span>45 minutos</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="genero" value="Prefiero no decir">
-                <span>Prefiero no decir</span>
+                <input type="radio" name="duracion" value="60+ minutos">
+                <span>60+ minutos</span>
             </label>
         </form>
     </main>
 
     <script>
-        const form = document.getElementById('form-edad');
+        const form = document.getElementById('form-duracion');
         const inputs = form.querySelectorAll('input[type="radio"]');
 
         inputs.forEach(input => {
             input.addEventListener('change', () => {
                 const respuesta = input.value;
-                localStorage.setItem('edadUsuario', respuesta);
+                localStorage.setItem('duracionUsuario', respuesta);
             });
         });
     </script>
-<section class="navegacion-inferior">
-    <a href="pregunta5usuarionormal.html" class="boton-volver">
-        <span class="material-icons icon-flecha">arrow_back</span>
-    </a>
-    <a href="pregunta7usuarionormal.html" class="siguiente">Siguiente</a>
-</section>
+    <section class="navegacion-inferior">
+        <a href="pregunta5usuarionormal.html" class="boton-volver">
+            <span class="material-icons icon-flecha">arrow_back</span>
+        </a>
+        <a href="pregunta7usuarionormal.html" class="siguiente">Siguiente</a>
+    </section>
 </body>
 </html>
 

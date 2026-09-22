@@ -5,16 +5,22 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 type Usuario = {
-  email: string;
-  contraseña: string;
-  nombre: string;
-  apellido: string;
-  numeroDeTelefono?: string;
-  DNI: number;
-  comfirmarContraseña: string;
-  respuestas?: {
-    [key: string]: string | undefined;
-    edad?: string;
+email: string;
+contraseña: string;
+nombre: string;
+apellido: string;
+numeroDeTelefono?: string;
+DNI: number;
+comfirmarContraseña: string;
+respuestas?: {
+  [key: string]: string | undefined;
+  edad?: string;
+  genero?: string;
+  objetivo?: string;
+  experiencia?: string;
+  cantidaDiasEntrenamiento?: string;
+  duracionEntrenamiento?: string;
+  intensidadEntrenamiento?: string;
   };
 };
 
@@ -80,9 +86,9 @@ app.post('/login', (req: Request, res: Response) => {
 
 app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
   const email = decodeURIComponent(req.params.email);
-  const { edad, ...otrasRespuestas } = req.body as { edad?: string; [key: string]: string | undefined };
+  const respuestas = req.body as { [key: string]: string | undefined };
 
-  if (!edad) {
+  if (!respuestas.edad) {
     return res.status(400).json({ message: 'La respuesta de edad es obligatoria.' });
   }
 
@@ -97,8 +103,7 @@ app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
     ...usuarios[index],
     respuestas: {
       ...(usuarios[index].respuestas ?? {}),
-      edad,
-      ...otrasRespuestas,
+      ...respuestas, // Merge all provided answers
     },
   };
 
