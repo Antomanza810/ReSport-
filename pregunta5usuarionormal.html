@@ -65,157 +65,150 @@
 </body>
 </html>
 
-<style>* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #404040;
-}
-
-/* --- CONTENEDOR PRINCIPAL --- */
-.contenedor-pregunta {
-    width: 90%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.titulo-app {
-    font-size: 2.2rem;
-    font-weight: 500;
-    color: #ffffff;
-    margin-bottom: 0.6rem;
-    text-align: center;
-}
-
-.barra-progreso-contenedor {
-    width: 100%;
-    height: 6px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    overflow: hidden;
-}
-
-.barra-progreso-relleno {
-    width: 100%; /* Ajustá este porcentaje en cada pantalla según el progreso */
-    height: 100%;
-    background-color: #ff0000;
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
-
-.pregunta-titulo {
-    width: 100%;
-    font-size: 1.35rem;
-    font-weight: 500;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-    text-align: left;
-}
-
-/* --- OPCIONES DE SELECCIÓN --- */
-.opciones-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.opcion-card {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0.85rem 1.2rem;
-    background-color: rgba(118, 118, 118, 0.46);
-    border-radius: 14px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    user-select: none;
-}
-
-.opcion-card input[type="radio"] {
-    display: none;
-}
-
-.opcion-card span {
-    font-size: 1.1rem;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-.opcion-card:has(input[type="radio"]:checked) {
-    border-color: #0088ff;
-    background-color: #b8b8b8;
-}
-
-.opcion-card:hover {
-    background-color: #b2b2b2;
-}
-
-/* --- NAVEGACIÓN INFERIOR (BOTONES) --- */
-.navegacion-inferior {
-    position: absolute;
-    bottom: 8vh;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
-    z-index: 10;
-}
-
-.boton-volver {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 50%;
-    width: 6vh;
-    height: 6vh;
-    background-color: rgba(118, 118, 118, 0.46);
-    transition: background-color 0.15s ease;
-}
-
-.boton-volver:hover {
-    background-color: #b2b2b2;
-}
-
-.icon-flecha {
-    color: #ffffff;
-    font-size: 1.8rem;
-}
-
-.siguiente {
-    padding: 0 1.5rem;
-    border-radius: 0.5rem;
-    background-color: rgba(118, 118, 118, 0.46);
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 1.1rem;
-    cursor: pointer;
-    text-decoration: none;
-    height: 6vh;
-    min-width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.15s ease;
-}
-
-.siguiente:hover {
-    background-color: #b2b2b2;
-}
-</style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    body {
+        display: flex;
+        flex-direction: column; /* Apila el contenedor principal y la navegación abajo */
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #888888;
+    }
+    
+    .contenedor-pregunta {
+        width: 90%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .titulo-app {
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 0.6rem;
+        text-align: center;
+    }
+    
+    .barra-progreso-contenedor {
+        width: 100%;
+        height: 6px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+    }
+    
+    .barra-progreso-relleno {
+        width: 71%;
+        height: 100%;
+        background-color: #ff0000;
+        border-radius: 10px;
+        transition: width 0.3s ease;
+    }
+    
+    /* --- PREGUNTA --- */
+    .pregunta-titulo {
+        width: 100%;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: #000;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+    
+    /* --- OPCIONES DE SELECCIÓN --- */
+    .opciones-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .opcion-card {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        background-color: #a8a6a6;
+        border-radius: 14px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        user-select: none;
+    }
+    
+    .opcion-card input[type="radio"] {
+        display: none;
+    }
+    
+    .opcion-card span {
+        font-size: 1.1rem;
+        color: #000;
+        font-weight: 600;
+    }
+    
+    .opcion-card:has(input[type="radio"]:checked) {
+        border-color: #ff0000;
+        background-color: #b8b8b8;
+    }
+    
+    .opcion-card:hover {
+        background-color: #b2b2b2;
+    }
+    
+    /* --- NAVEGACIÓN INFERIOR Y BOTONES --- */
+    .navegacion-inferior {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        width: 90%;
+        max-width: 420px;
+    }
+    
+    .boton-volver {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background-color: #a8a6a6;
+        color: #000;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
+    
+    .boton-volver:hover {
+        background-color: #b8b8b8;
+    }
+    
+    .siguiente {
+        padding: 0.6rem 1.6rem;
+        border-radius: 0.6rem;
+        background-color: #a8a6a6;
+        color: #000;
+        font-weight: 500;
+        font-size: 1.1rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+    }
+    
+    .siguiente:hover {
+        background-color: #b8b8b8;
+    }
+    </style>
