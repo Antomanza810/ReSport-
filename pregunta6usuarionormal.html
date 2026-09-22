@@ -15,121 +15,81 @@
             <div class="barra-progreso-relleno"></div>
         </div>
 
-        <h2 class="pregunta-titulo">¿Cuánto tiempo querés que dure tu entrenamiento?</h2>
+        <h2 class="pregunta-titulo">Que equipo tenes disponible ?</h2>
 
-        <form id="form-duracion" class="opciones-form">
+        <form id="form-equipamiento" class="opciones-form">
             <label class="opcion-card">
-                <input type="radio" name="duracion" value="15 minutos" required>
-                <span>15 minutos</span>
+                <input type="checkbox" name="equipamiento" value="Mancuernas">
+                <span class="texto-opcion">Mancuernas</span>
+                <span class="casilla-custom"></span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="duracion" value="30 minutos">
-                <span>30 minutos</span>
+                <input type="checkbox" name="equipamiento" value="Maquinas o cables">
+                <span class="texto-opcion">Maquinas o cables</span>
+                <span class="casilla-custom"></span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="duracion" value="45 minutos">
-                <span>45 minutos</span>
+                <input type="checkbox" name="equipamiento" value="Bandas de resistencia">
+                <span class="texto-opcion">Bandas de resistencia</span>
+                <span class="casilla-custom"></span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="duracion" value="60+ minutos">
-                <span>60+ minutos</span>
+                <input type="checkbox" name="equipamiento" value="banco">
+                <span class="texto-opcion">Banco</span>
+                <span class="casilla-custom"></span>
+            </label>
+
+            <label class="opcion-card">
+                <input type="checkbox" name="equipamiento" value="Sin equipo">
+                <span class="texto-opcion">Sin equipo</span>
+                <span class="casilla-custom"></span>
             </label>
         </form>
     </main>
 
-    <script>
-        const form = document.getElementById('form-duracion');
-        const inputs = form.querySelectorAll('input[type="radio"]');
-
-        inputs.forEach(input => {
-            input.addEventListener('change', () => {
-                const respuesta = input.value;
-                localStorage.setItem('duracionUsuario', respuesta);
-            });
-        });
-    </script>
     <section class="navegacion-inferior">
         <a href="pregunta5usuarionormal.html" class="boton-volver">
             <span class="material-icons icon-flecha">arrow_back</span>
         </a>
         <a href="pregunta7usuarionormal.html" class="siguiente">Siguiente</a>
     </section>
+
+    <script>
+        const form = document.getElementById('form-equipamiento');
+        const inputs = form.querySelectorAll('input[type="checkbox"]');
+
+        inputs.forEach(input => {
+            input.addEventListener('change', () => {
+                const seleccionados = Array.from(inputs)
+                    .filter(i => i.checked)
+                    .map(i => i.value);
+                
+                localStorage.setItem('equipamientoUsuario', JSON.stringify(seleccionados));
+            });
+        });
+    </script>
 </body>
 </html>
 
 <style>
-.navegacion-inferior {
-    position: absolute; /* O fixed si quieres que flote */
-    bottom: 10vh;
-    left: 50%;
-    transform: translateX(-300%);
-    display: flex;
-    gap: 1.5rem; /* Espacio entre la flecha y el botón "Siguiente" */
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-.boton-volver {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 50%; /* Esto crea el círculo */
-    width: 6vh; /* Ajusta el tamaño del círculo */
-    height: 6vh; /* Mismo tamaño que el ancho */
-    background-color: #767676; /* El mismo gris de tus botones */
-    transition: background-color 0.15s ease;
-}
-
-.boton-volver:hover {
-    background-color: #b2b2b2; /* Un gris más claro al pasar el mouse */
-}
-
-.icon-flecha {
-    color: #ffffff; /* El color de la flecha es negro */
-    font-size: 3vh; /* Ajusta el tamaño de la flecha */
-    font-weight: 580;
-}
-
-    * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.siguiente {
-    position: absolute;
-    bottom: 10vh; /* Cambia este número si lo querés más arriba o abajo */
-    left: 50%;
-    transform: translateX(-50%); /* Estos dos trucos lo centran horizontalmente */
-    z-index: 10;
-    padding: 1.4vh 1.6vw;
-    border-radius: 0.5rem;
-    background-color: rgba(118, 118, 118, 0.46);
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 1.4vw ;
-    cursor: pointer;
-    text-decoration: none;
-    width: 9vw;
-    height: 6vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea todo al techo */
     align-items: center;
     min-height: 100vh;
-    background-color: #404040;
+    background-color: #888888;
+    padding-top: 5rem; /* Ajusta la distancia fija respecto a la parte superior */
 }
 
 .contenedor-pregunta {
@@ -140,14 +100,13 @@ body {
     align-items: center;
 }
 
-
 .titulo-app {
     font-size: 2.2rem;
     font-weight: 500;
     color: #000000;
     margin-bottom: 0.6rem;
     text-align: center;
-    margin-top: -14rem;
+    /* Se elimina margin-top: -20rem */
 }
 
 .barra-progreso-contenedor {
@@ -160,7 +119,7 @@ body {
 }
 
 .barra-progreso-relleno {
-    width: 28.4%;
+    width: 85.2%;
     height: 100%;
     background-color: #ff0000;
     border-radius: 10px;
@@ -169,12 +128,12 @@ body {
 
 /* --- PREGUNTA --- */
 .pregunta-titulo {
-    width: 100%;
+    width: 100%; /* Cambiado de 100vw a 100% para evitar el desborde horizontal */
     font-size: 1.35rem;
     font-weight: 500;
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 1.5rem;
-    text-align: left;
+    text-align: center;
 }
 
 /* --- OPCIONES DE SELECCIÓN --- */
@@ -188,32 +147,90 @@ body {
 .opcion-card {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 0.85rem 1.2rem;
-    background-color: rgba(118, 118, 118, 0.46);
-    border-radius: 14px;
-    border: 2px solid transparent;
+    padding: 0.75rem 1rem;
+    background-color: #a8a6a6;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
 }
 
-.opcion-card input[type="radio"] {
+/* Ocultar el checkbox nativo */
+.opcion-card input[type="checkbox"] {
     display: none;
 }
 
-.opcion-card span {
+.texto-opcion {
     font-size: 1.1rem;
-    color: #ffffff;
-    font-weight: 600;
+    color: #000000;
+    font-weight: 400;
 }
 
-.opcion-card:has(input[type="radio"]:checked) {
-    border-color: #0088ff;
-    background-color: #b8b8b8;
+/* Cuadrado de la derecha sin seleccionar */
+.casilla-custom {
+    width: 26px;
+    height: 26px;
+    border: 2px solid #666666;
+    border-radius: 6px;
+    background-color: transparent;
+    transition: all 0.2s ease;
 }
 
-.opcion-card:hover {
-    background-color: #b2b2b2;
+/* Cuando el checkbox esté SELECCIONADO -> El cuadrado se vuelve rojo */
+.opcion-card input[type="checkbox"]:checked ~ .casilla-custom {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+/* --- NAVEGACIÓN INFERIOR --- */
+.navegacion-inferior {
+    position: absolute;
+    bottom: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.boton-volver {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: #a8a8a8;
+    transition: background-color 0.15s ease;
+}
+
+.boton-volver:hover {
+    background-color: #8f8f8f;
+}
+
+.icon-flecha {
+    color: #000000;
+    font-size: 24px;
+}
+
+.siguiente {
+    padding: 0.6rem 2rem;
+    border-radius: 8px;
+    background-color: #a8a8a8;
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
 }
 </style>
