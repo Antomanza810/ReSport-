@@ -1,205 +1,367 @@
-/* Restablecimiento general de márgenes */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-  }
-  
-  /* Contenedor principal de la barra superior */
-  section.top-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100vw;
-    height: 8vh;
-    border-bottom: 0.15rem solid #cccccc;
-    background-color: #ffffff;
-    padding: 0 1rem;
-  }
-  
-  /* Secciones internas del encabezado */
-  .header-section {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .profile-section {
-    flex: 2;
-    gap: 1.5rem;
-  }
-  
-  .app-title-section {
-    flex: 3;
-    justify-content: center;
-  }
-  
-  .settings-section {
-    flex: 1;
-    justify-content: flex-end;
-  }
-  
-  /* Línea divisora vertical */
-  .divider {
-    width: 0.12rem;
-    height: 50%;
-    background-color: #d1d1d1;
-  }
-  
-  /* Estilos de botones transparentes */
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-  }
-  
-  .profile-btn {
-    height: 100%;
-    padding: 0 0.5rem;
-  }
-  
-  /* Construcción del icono por defecto con CSS */
-  .user-avatar-default {
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    overflow: hidden;
-  }
-  
-  .user-avatar-default .head {
-    width: 1.1rem;
-    height: 1.1rem;
-    background-color: #2b82a3;
-    border-radius: 50%;
-    margin-bottom: 0.15rem;
-  }
-  
-  .user-avatar-default .body {
-    width: 2.2rem;
-    height: 1.1rem;
-    background-color: #2b82a3;
-    border-top-left-radius: 1.1rem;
-    border-top-right-radius: 1.1rem;
-  }
-  
-  /* Foto de perfil al iniciar sesión */
-  .user-photo {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  /* Nombre de usuario */
-  .user-name {
-    font-size: 1.2rem;
-    color: #333333;
-  }
-  
-  /* Nombre de la aplicación */
-  .app-title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #333333;
-    text-decoration: none;
-  }
-  
-  /* Botón de ajustes */
-  .settings-btn {
-    height: 100%;
-    padding: 0 1rem;
-  }
-  
-  .settings-img {
-    width: 2rem;
-    height: 2rem;
-    object-fit: contain;
-  }
-  
-  /* Clases de utilidad */
-  .hidden {
-    display: none !important;
-  }
-  
-  /* Estilos para ventanas modales */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .modal-box {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    width: 80vw;
-    max-width: 25rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  }
-  
-  .modal-box h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1.2rem;
-    color: #333333;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group label {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-    color: #555555;
-  }
-  
-  .form-group input {
-    padding: 0.6rem;
-    font-size: 1rem;
-    border: 0.08rem solid #ccc;
-    border-radius: 0.25rem;
-  }
-  
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.8rem;
-    margin-top: 1.2rem;
-  }
-  
-  .btn-primary {
-    background-color: #2b82a3;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.25rem;
-    font-size: 0.9rem;
-  }
-  
-  .btn-secondary {
-    background-color: #e0e0e0;
-    color: #333333;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.25rem;
-    font-size: 0.9rem;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+section.arriba {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 8vh;
+  border-bottom: 0.15rem solid #cccccc;
+  background-color: #ffffff;
+  padding: 0 1rem;
+}
+
+/* Secciones internas del encabezado */
+.header-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-section {
+  flex: 2;
+  gap: 1.5rem;
+}
+
+.app-title-section {
+  flex: 3;
+  justify-content: center;
+}
+
+.settings-section {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* Línea divisora vertical */
+.divider {
+  width: 0.12rem;
+  height: 50%;
+  background-color: #d1d1d1;
+}
+
+/* Estilos de botones transparentes */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.profile-btn {
+  height: 100%;
+  padding: 0 0.5rem;
+}
+
+/* Construcción del icono por defecto con CSS */
+.user-avatar-default {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.user-avatar-default .head {
+  width: 1.1rem;
+  height: 1.1rem;
+  background-color: #2b82a3;
+  border-radius: 50%;
+  margin-bottom: 0.15rem;
+}
+
+.user-avatar-default .body {
+  width: 2.2rem;
+  height: 1.1rem;
+  background-color: #2b82a3;
+  border-top-left-radius: 1.1rem;
+  border-top-right-radius: 1.1rem;
+}
+
+/* Foto de perfil al iniciar sesión */
+.user-photo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Nombre de usuario */
+.user-name {
+  font-size: 1.2rem;
+  color: #333333;
+}
+
+/* Nombre de la aplicación */
+.app-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #333333;
+  text-decoration: none;
+}
+
+/* Botón de ajustes */
+.settings-btn {
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.settings-img {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+}
+
+/* Clases de utilidad */
+.hidden {
+  display: none !important;
+}
+
+/* Modal Flotante / Ventanas Modales */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+.modal-box {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 2px solid #000;
+  width: 320px;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.modal-box h2, .modal-box h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333333;
+}
+
+.form-group {
+  margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  color: #555555;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #000;
+  font-size: 0.85rem;
+  border-radius: 0.25rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn, .btn-primary, .btn-secondary {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #000;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border-radius: 0.25rem;
+}
+
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #333333;
+}
+
+.btn:hover, .btn-primary:hover, .btn-secondary:hover {
+  opacity: 0.8;
+}
+
+/* ==========================================
+   LAYOUT PRINCIPAL (MENÚ + CALENDARIO)
+   ========================================== */
+.contenido-principal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 0;
+  padding-right: 3rem;
+}
+
+/* Menú Lateral */
+.menu-lateral {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+  flex-shrink: 0;
+  border-top: 0.15rem solid #000;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.item-menu {
+  display: block;
+  padding: 0.8rem 0 0.8rem 1rem;  /* Relleno interno para despegar el texto de la pared */
+  color: #000;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 0.95rem;
+  letter-spacing: 0.03rem;
+  border-bottom: 0.15rem solid #000;
+  transition: background-color 0.2s ease;
+}
+
+.item-menu:hover {
+  background-color: #f0f0f0;
+  padding-left: 0.5rem;
+}
+
+/* Contenedor del Calendario */
+.calendar-container {
+  width: 100%;
+  max-width: 58rem;
+  border: 2px solid #000;
+  background: #fff;
+  margin-left: auto;
+}
+
+/* Cabecera con Nombre del Mes y Flechas */
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 2px solid #000;
+}
+
+.calendar-header h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 0.5rem;
+}
+
+.nav-btn:hover {
+  color: #555;
+}
+
+/* Grilla de Días */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-collapse: collapse;
+}
+
+.day-cell {
+  min-height: 80px;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
+  padding: 0.25rem;
+  position: relative;
+  background: #fff;
+}
+
+/* Quitar borde derecho a la última columna */
+.day-cell:nth-child(7n) {
+  border-right: none;
+}
+
+/* Celdas del mes anterior/siguiente */
+.day-cell.empty {
+  background-color: #f9f9f9;
+}
+
+.day-number {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 0.2rem;
+}
+
+/* Estilo del Evento */
+.event-card {
+  border: 1px solid #000;
+  padding: 0.2rem 0.3rem;
+  margin-bottom: 0.2rem;
+  border-radius: 2px;
+  font-size: 0.62rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.event-title {
+  max-width: 70%;
+  word-break: break-word;
+}
+
+.event-time {
+  font-size: 0.6rem;
+  white-space: nowrap;
+  margin-left: 0.2rem;
+}
+
+/* Colores por Tipo de Evento */
+.event-card.entrenamiento {
+  background-color: #ff7b7b;
+  color: #000;
+}
+
+.event-card.consulta {
+  background-color: #82bfe0;
+  color: hsl(0, 0%, 0%);
+}
