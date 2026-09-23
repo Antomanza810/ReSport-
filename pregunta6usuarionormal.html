@@ -37,7 +37,7 @@
             </label>
 
             <label class="opcion-card">
-                <input type="checkbox" name="equipamiento" value="banco">
+                <input type="checkbox" name="equipamiento" value="Banco">
                 <span class="texto-opcion">Banco</span>
                 <span class="casilla-custom"></span>
             </label>
@@ -67,7 +67,12 @@
                     .filter(i => i.checked)
                     .map(i => i.value);
                 
-                localStorage.setItem('equipamientoUsuario', JSON.stringify(seleccionados));
+                const datosPrevios = JSON.parse(localStorage.getItem('tempUser')) || {};
+                const datosActualizados = {
+                    ...datosPrevios,
+                    equipamiento: seleccionados
+                };
+                localStorage.setItem('tempUser', JSON.stringify(datosActualizados));
             });
         });
     </script>
@@ -85,11 +90,11 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinea todo al techo */
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     background-color: #888888;
-    padding-top: 5rem; /* Ajusta la distancia fija respecto a la parte superior */
+    padding-top: 5rem;
 }
 
 .contenedor-pregunta {
@@ -106,7 +111,6 @@ body {
     color: #000000;
     margin-bottom: 0.6rem;
     text-align: center;
-    /* Se elimina margin-top: -20rem */
 }
 
 .barra-progreso-contenedor {
@@ -126,9 +130,8 @@ body {
     transition: width 0.3s ease;
 }
 
-/* --- PREGUNTA --- */
 .pregunta-titulo {
-    width: 100%; /* Cambiado de 100vw a 100% para evitar el desborde horizontal */
+    width: 100%;
     font-size: 1.35rem;
     font-weight: 500;
     color: #000000;
@@ -136,7 +139,6 @@ body {
     text-align: center;
 }
 
-/* --- OPCIONES DE SELECCIÓN --- */
 .opciones-form {
     width: 100%;
     display: flex;
@@ -157,7 +159,6 @@ body {
     user-select: none;
 }
 
-/* Ocultar el checkbox nativo */
 .opcion-card input[type="checkbox"] {
     display: none;
 }
@@ -168,7 +169,6 @@ body {
     font-weight: 400;
 }
 
-/* Cuadrado de la derecha sin seleccionar */
 .casilla-custom {
     width: 26px;
     height: 26px;
@@ -178,16 +178,14 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Cuando el checkbox esté SELECCIONADO -> El cuadrado se vuelve rojo */
 .opcion-card input[type="checkbox"]:checked ~ .casilla-custom {
     background-color: #ff0000;
     border-color: #ff0000;
 }
 
-/* --- NAVEGACIÓN INFERIOR --- */
 .navegacion-inferior {
     position: absolute;
-    bottom: 8vh;
+    bottom: 10vh;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -195,9 +193,6 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 10;
-        bottom: 10vh; /* Cambia este número si lo querés más arriba o abajo */
-        left: 50%;
-        transform: translateX(-50%);
 }
 
 .boton-volver {

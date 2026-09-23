@@ -19,197 +19,206 @@
 
         <form id="form-intensidad" class="opciones-form">
             <label class="opcion-card">
-                <input type="radio" name="intensidad" value="tiempo" required>
+                <input type="radio" name="duracion" value="15 minutos">
                 <span>15 minutos</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="intensidad" value="tiempo">
+                <input type="radio" name="duracion" value="30 minutos">
                 <span>30 minutos</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="intensidad" value="tiempo">
+                <input type="radio" name="duracion" value="45 minutos">
                 <span>45 minutos</span>
             </label>
 
             <label class="opcion-card">
-                <input type="radio" name="intensidad" value="tiempo">
+                <input type="radio" name="duracion" value="60+ minutos">
                 <span>60+ minutos</span>
             </label>
         </form>
     </main>
 
-    <script>
-        const form = document.getElementById('form-intensidad');
-        const inputs = form.querySelectorAll('input[type="radio"]');
-
-        inputs.forEach(input => {
-            input.addEventListener('change', () => {
-                const respuesta = input.value;
-                localStorage.setItem('intensidadUsuario', respuesta);
-            });
-        });
-    </script>
     <section class="navegacion-inferior">
         <a href="pregunta6usuarionormal.html" class="boton-volver">
             <span class="material-icons icon-flecha">arrow_back</span>
         </a>
-        <a href="paginaconcuenta.html" class="siguiente">Siguiente</a>
+        <button type="button" id="btn-siguiente" class="siguiente">Siguiente</button>
     </section>
+
+    <script>
+        const btnSiguiente = document.getElementById('btn-siguiente');
+
+        btnSiguiente.addEventListener('click', () => {
+            const opcionSeleccionada = document.querySelector('input[name="duracion"]:checked');
+
+            if (!opcionSeleccionada) {
+                alert('Por favor, selecciona una opción antes de continuar.');
+                return;
+            }
+
+            // Guardar en el objeto acumulado en localStorage
+            const datosPrevios = JSON.parse(localStorage.getItem('tempUser')) || {};
+            const datosActualizados = {
+                ...datosPrevios,
+                duracionEntrenamiento: opcionSeleccionada.value
+            };
+            localStorage.setItem('tempUser', JSON.stringify(datosActualizados));
+
+            // Redirigir al siguiente paso solo después de validar
+            window.location.href = 'paginaconcuenta.html';
+        });
+    </script>
 </body>
 </html>
 
 <style>
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Alinea todo al techo */
-    align-items: center;
-    min-height: 100vh;
-    background-color: #888888;
-    padding-top: 5rem; /* Misma altura fija respecto a la parte superior */
-}
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #888888;
+        padding-top: 5rem;
+    }
 
-.contenedor-pregunta {
-    width: 90%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .contenedor-pregunta {
+        width: 90%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.titulo-app {
-    font-size: 2.2rem;
-    font-weight: 500;
-    color: #000000;
-    margin-bottom: 0.6rem;
-    text-align: center;
-    /* Se elimina margin-top: -20rem */
-}
+    .titulo-app {
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 0.6rem;
+        text-align: center;
+    }
 
-.barra-progreso-contenedor {
-    width: 100%;
-    height: 6px;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    overflow: hidden;
-}
+    .barra-progreso-contenedor {
+        width: 100%;
+        height: 6px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+    }
 
-.barra-progreso-relleno {
-    width: 100%;
-    height: 100%;
-    background-color: #ff0000;
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
+    .barra-progreso-relleno {
+        width: 100%;
+        height: 100%;
+        background-color: #ff0000;
+        border-radius: 10px;
+        transition: width 0.3s ease;
+    }
 
-/* --- PREGUNTA --- */
-.pregunta-titulo {
-    width: 100%;
-    font-size: 1.35rem;
-    font-weight: 500;
-    color: #000;
-    margin-bottom: 1.5rem;
-    text-align: left;
-}
+    .pregunta-titulo {
+        width: 100%;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: #000;
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
 
-/* --- OPCIONES DE SELECCIÓN --- */
-.opciones-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
+    .opciones-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
 
-.opcion-card {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 0.85rem 1.2rem;
-    background-color: #a8a6a6;
-    border-radius: 14px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    user-select: none;
-}
+    .opcion-card {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        background-color: #a8a6a6;
+        border-radius: 14px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        user-select: none;
+    }
 
-.opcion-card input[type="radio"] {
-    display: none;
-}
+    .opcion-card input[type="radio"] {
+        display: none;
+    }
 
-.opcion-card span {
-    font-size: 1.1rem;
-    color: #000;
-    font-weight: 600;
-}
+    .opcion-card span {
+        font-size: 1.1rem;
+        color: #000;
+        font-weight: 600;
+    }
 
-.opcion-card:has(input[type="radio"]:checked) {
-    border-color: #ff0000;
-    background-color: #b8b8b8;
-}
+    .opcion-card:has(input[type="radio"]:checked) {
+        border-color: #ff0000;
+        background-color: #b8b8b8;
+    }
 
-.opcion-card:hover {
-    background-color: #b2b2b2;
-}
+    .opcion-card:hover {
+        background-color: #b2b2b2;
+    }
 
-/* --- NAVEGACIÓN INFERIOR Y BOTONES --- */
-.navegacion-inferior {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    width: 90%;
-    max-width: 420px;
-    position: absolute;
-    bottom: 10vh; /* Cambia este número si lo querés más arriba o abajo */
+    .navegacion-inferior {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        width: 90%;
+        max-width: 420px;
+        position: absolute;
+        bottom: 10vh;
         left: 50%;
         transform: translateX(-50%);
-}
+    }
 
-.boton-volver {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    background-color: #a8a6a6;
-    color: #000;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
+    .boton-volver {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background-color: #a8a6a6;
+        color: #000;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+    }
 
-.boton-volver:hover {
-    background-color: #b8b8b8;
-}
+    .boton-volver:hover {
+        background-color: #b8b8b8;
+    }
 
-.siguiente {
-    padding: 0.6rem 1.6rem;
-    border-radius: 0.6rem;
-    background-color: #a8a6a6;
-    color: #000;
-    font-weight: 500;
-    font-size: 1.1rem;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease;
-}
+    .siguiente {
+        padding: 0.6rem 1.6rem;
+        border-radius: 0.6rem;
+        background-color: #a8a6a6;
+        color: #000;
+        font-weight: 500;
+        font-size: 1.1rem;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+    }
 
-.siguiente:hover {
-    background-color: #b8b8b8;
-}
-    </style>
+    .siguiente:hover {
+        background-color: #b8b8b8;
+    }
+</style>

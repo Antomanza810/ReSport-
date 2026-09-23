@@ -17,7 +17,7 @@
 
         <h2 class="pregunta-titulo">Cuantas veces a la semana queres entrenar?</h2>
 
-        <form id="form-edad" class="opciones-form">
+        <form id="form-dias" class="opciones-form">
             <label class="opcion-card">
                 <input type="radio" name="dias" value="2 dias" required>
                 <span>2 dias</span>
@@ -46,36 +46,19 @@
     </main>
 
     <script>
-     const form = document.getElementById('form-dias-duracion');
-    const emailUsuario = localStorage.getItem('usuarioEmail');
+        const form = document.getElementById('form-dias');
+        const inputs = form.querySelectorAll('input[type="radio"]');
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-      const respuestas = {
-        cantidaDiasEntrenamiento: formData.get('cantidaDiasEntrenamiento'),
-        duracionEntrenamiento: formData.get('duracionEntrenamiento'),
-      };
-
-      const response = await fetch(`/usuarios/${encodeURIComponent(emailUsuario)}/respuestas`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(respuestas),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        alert(data.message || 'No se pudo guardar las respuestas.');
-        return;
-      }
-
-      alert('Respuestas guardadas correctamente.');
-      window.location.href = 'paginaconcuenta.html';
-    });
+        inputs.forEach(input => {
+            input.addEventListener('change', () => {
+                const datosPrevios = JSON.parse(localStorage.getItem('tempUser')) || {};
+                const datosActualizados = {
+                    ...datosPrevios,
+                    diasEntrenamiento: input.value
+                };
+                localStorage.setItem('tempUser', JSON.stringify(datosActualizados));
+            });
+        });
     </script>
 <section class="navegacion-inferior">
     <a href="pregunta4usuarionormal.html" class="boton-volver">
@@ -87,7 +70,7 @@
 </html>
 
 <style>
-   * {
+    * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -97,11 +80,11 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinea todo al techo en vez de al centro */
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     background-color: #888888;
-    padding-top: 5rem; /* Ajusta la altura fija respecto al techo */
+    padding-top: 5rem;
 }
 
 .contenedor-pregunta {
@@ -118,7 +101,6 @@ body {
     color: #000000;
     margin-bottom: 0.6rem;
     text-align: center;
-    /* Se remueve margin-top: -20rem */
 }
 
 .barra-progreso-contenedor {
@@ -138,9 +120,8 @@ body {
     transition: width 0.3s ease;
 }
 
-/* --- PREGUNTA --- */
 .pregunta-titulo {
-    width: 100%; /* Cambiado de 100vw a 100% para evitar desbordes */
+    width: 100%;
     font-size: 1.35rem;
     font-weight: 500;
     color: #000;
@@ -148,7 +129,6 @@ body {
     text-align: center;
 }
 
-/* --- OPCIONES DE SELECCIÓN --- */
 .opciones-form {
     width: 100%;
     display: flex;
@@ -188,7 +168,6 @@ body {
     background-color: #b2b2b2;
 }
 
-/* --- NAVEGACIÓN INFERIOR Y BOTONES --- */
 .navegacion-inferior {
     display: flex;
     justify-content: center;
@@ -198,9 +177,9 @@ body {
     width: 90%;
     max-width: 420px;  
     position: absolute;      
-    bottom: 10vh; /* Cambia este número si lo querés más arriba o abajo */
-        left: 50%;
-        transform: translateX(-50%);
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .boton-volver {
@@ -238,4 +217,4 @@ body {
 .siguiente:hover {
     background-color: #b8b8b8;
 }
-    </style>
+</style>
