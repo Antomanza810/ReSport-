@@ -89,11 +89,23 @@ app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
   const respuestas = req.body as {
     [key: string]: string | undefined;
     edad?: string;
-    duracionEntrenamiento?: string;
+    genero?: string;
+    objetivo?: string;
+    experiencia?: string;
     cantidaDiasEntrenamiento?: string;
+    duracionEntrenamiento?: string;
+    intensidadEntrenamiento?: string;
   };
 
-  if (!respuestas.edad && !respuestas.duracionEntrenamiento && !respuestas.cantidaDiasEntrenamiento) {
+  if (!respuestas.edad &&
+    !respuestas.genero &&
+    !respuestas.objetivo &&
+    !respuestas.experiencia &&
+    !respuestas.cantidaDiasEntrenamiento &&
+    !respuestas.duracionEntrenamiento &&
+    !respuestas.intensidadEntrenamiento
+    
+   ) {
     return res.status(400).json({ message: 'Debe proporcionar al menos una respuesta.' });
   }
 
@@ -117,6 +129,41 @@ app.post('/usuarios/:email/respuestas', (req: Request, res: Response) => {
 
   return res.status(200).json({
     message: 'Respuestas guardadas correctamente.',
+    usuario: usuarioActualizado,
+  });
+});
+app.put('/usuarios/:email/respuestas', (req: Request, res: Response) => {
+  const email = decodeURIComponent(req.params.email as string);
+  const nuevasRespuestas = req.body as {
+    [key: string]: string | undefined;
+    edad?: string;
+    genero?: string;
+    objetivo?: string;
+    experiencia?: string;
+    cantidaDiasEntrenamiento?: string;
+    duracionEntrenamiento?: string;
+    intensidadEntrenamiento?: string;
+  };
+  const usuarios = leerUsuarios();
+  const index = usuarios.findIndex((usuario) => usuario.email.toLowerCase() === email.toLowerCase());
+
+  if (index === -1) {
+    return res.status(404).json({ message: 'Usuario no encontrado.' });
+  }
+
+  const usuarioActualizado: Usuario = {
+    ...usuarios[index],
+    respuestas: {
+      ...(usuarios[index].respuestas ?? {}),
+      ...nuevasRespuestas,
+    },
+  };
+
+  usuarios[index] = usuarioActualizado;
+  guardarUsuarios(usuarios);
+
+  return res.status(200).json({
+    message: 'Respuestas actualizadas correctamente.',
     usuario: usuarioActualizado,
   });
 });
