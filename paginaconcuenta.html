@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ReSport+</title>
-  
   <link rel="stylesheet" href="paginaconcuenta.css">
 </head>
 <body>
@@ -15,12 +14,12 @@
     <!-- Sección de Perfil / Usuario -->
     <div class="header-section profile-section">
       <button class="profile-btn" id="profileBtn" type="button">
-        <!-- Ícono por defecto (cabeza y cuerpo) -->
+        <!-- Ícono por defecto -->
         <div class="user-avatar-default" id="defaultAvatar">
           <div class="head"></div>
           <div class="body"></div>
         </div>
-        <!-- Foto de perfil personalizada (oculta al inicio) -->
+        <!-- Foto de perfil personalizada -->
         <img id="userPhoto" class="user-photo hidden" src="" alt="Foto de Perfil">
       </button>
 
@@ -32,7 +31,7 @@
 
     <div class="divider"></div>
 
-    <!-- Título de la Aplicación (No modificable) -->
+    <!-- Título de la Aplicación -->
     <div class="header-section app-title-section">
       <div class="app-title">ReSport+</div>
     </div>
@@ -42,14 +41,13 @@
     <!-- Botón de Ajustes -->
     <div class="header-section settings-section">
       <button class="settings-btn" id="settingsBtn" type="button">
-        <!-- Imagen de ajustes (reemplaza 'settings.png' por la ruta de tu imagen) -->
         <img src="settings.png" alt="Ajustes" class="settings-img">
       </button>
     </div>
 
   </section>
 
-  <!-- Modal 1: Formulario de Inicio de Sesión (DNI y Contraseña) -->
+  <!-- Modal 1: Formulario de Inicio de Sesión -->
   <div class="modal-overlay hidden" id="loginModal">
     <div class="modal-box">
       <h2>Iniciar Sesión</h2>
@@ -57,7 +55,7 @@
         <div class="form-group">
             <label for="emailInput">Correo electrónico:</label>
             <input type="email" id="emailInput" required placeholder="Ingrese su mail">
-          </div>
+        </div>
         <div class="form-group">
           <label for="passwordInput">Contraseña:</label>
           <input type="password" id="passwordInput" required placeholder="Ingrese su contraseña">
@@ -70,7 +68,7 @@
     </div>
   </div>
 
-  <!-- Modal 2: Edición del Perfil (Nombre y Foto) -->
+  <!-- Modal 2: Edición del Perfil -->
   <div class="modal-overlay hidden" id="editProfileModal">
     <div class="modal-box">
       <h2>Editar Perfil</h2>
@@ -91,7 +89,74 @@
     </div>
   </div>
 
-  <!-- Enlace al archivo JavaScript externo -->
-  <script src="paginaconcuenta.js"></script>
+  <script>
+    const profileBtn = document.getElementById('profileBtn');
+    const defaultAvatar = document.getElementById('defaultAvatar');
+    const userPhoto = document.getElementById('userPhoto');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('loginForm');
+    const closeLoginBtn = document.getElementById('closeLoginBtn');
+    const emailInput = document.getElementById('emailInput');
+
+    const editProfileModal = document.getElementById('editProfileModal');
+    const editProfileForm = document.getElementById('editProfileForm');
+    const closeEditBtn = document.getElementById('closeEditBtn');
+
+    const editNameInput = document.getElementById('editNameInput');
+    const editPhotoUrlInput = document.getElementById('editPhotoUrlInput');
+    const settingsBtn = document.getElementById('settingsBtn');
+
+    // Cargar datos guardados del navegador
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    function updateUI() {
+      if (currentUser) {
+        defaultAvatar.classList.add('hidden');
+        userPhoto.src = currentUser.photoUrl || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80";
+        userPhoto.classList.remove('hidden');
+        userNameDisplay.textContent = currentUser.nombre || currentUser.email.split('@')[0];
+      } else {
+        defaultAvatar.classList.remove('hidden');
+        userPhoto.classList.add('hidden');
+        userNameDisplay.textContent = "Nombre";
+      }
+    }
+
+    // Cargar datos al abrir la página
+    updateUI();
+
+    profileBtn.addEventListener('click', () => {
+      if (!currentUser) {
+        // Redirigir a la página de login si no hay sesión activa
+        window.location.href = 'paginainiciarsesion.html';
+      } else {
+        editNameInput.value = currentUser.nombre;
+        editPhotoUrlInput.value = currentUser.photoUrl || '';
+        editProfileModal.classList.remove('hidden');
+      }
+    });
+
+    editProfileForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      currentUser.nombre = editNameInput.value.trim();
+      currentUser.photoUrl = editPhotoUrlInput.value.trim();
+
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      localStorage.setItem('registeredUser', JSON.stringify(currentUser));
+
+      updateUI();
+      editProfileModal.classList.add('hidden');
+    });
+
+    closeLoginBtn.addEventListener('click', () => loginModal.classList.add('hidden'));
+    closeEditBtn.addEventListener('click', () => editProfileModal.classList.add('hidden'));
+
+    settingsBtn.addEventListener('click', () => {
+      alert("Abriendo panel de Ajustes...");
+    });
+  </script>
 </body>
 </html>

@@ -1,101 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
-</head>
-<body>
-    <section class="separar">
-    <a href="paginaprincipalanto.html" class="Inicio">ReSport+</a>
-</section>
-<a href="pregunta1usuarionormal.html" class="Siguiente">Siguiente</a>
-    <main class="contenedor-formulario">
-        <h2>Crear cuenta:</h2>
-        <form id="crearCuentaForm">
-            <div class="input-container">
-                <input type="email" id="email" name="email" placeholder=" " required>
-                <label for="email"><span class="label-title">Email:</span> ingresá tu mail</label>
-            </div>
-
-            <div class="input-container">
-                <input type="text" id="nombre" name="nombre" placeholder=" " required>
-                <label for="nombre"><span class="label-title">Nombre:</span> ingresá tu nombre</label>
-            </div>
-
-            <div class="input-container">
-                <input type="text" id="apellido" name="apellido" placeholder=" " required>
-                <label for="apellido"><span class="label-title">Apellido:</span> ingresá tu apellido</label>
-            </div>
-
-            <div class="input-container">
-                <input type="password" id="password" name="contraseña" placeholder=" " required>
-                <label for="password"><span class="label-title">contraseña:</span> Ingresá tu contraseña</label>
-            </div>
-
-            <div class="input-container">
-                <input type="password" id="confirm-password" name="comfirmarContraseña" placeholder=" " required>
-                <label for="confirm-password"><span class="label-title">confirmar contraseña:</span> Repita la contraseña</label>
-            </div>
-
-            <div class="input-container">
-                <input type="text" id="dni" name="DNI" placeholder=" " required>
-                <label for="dni"><span class="label-title">Dni:</span> ingresá tu dni</label>
-            </div>
-
-            <button type="submit" class="btn-medico">Crear cuenta</button>
-        </form>
-
-        <script>
-            const formulario = document.getElementById('crearCuentaForm');
-
-            formulario.addEventListener('submit', async (event) => {
-                event.preventDefault();
-
-                const usuario = {
-                    email: document.getElementById('email').value,
-                    nombre: document.getElementById('nombre').value,
-                    apellido: document.getElementById('apellido').value,
-                    contraseña: document.getElementById('password').value,
-                    comfirmarContraseña: document.getElementById('confirm-password').value,
-                    DNI: Number(document.getElementById('dni').value),
-                };
-
-                const respuesta = await fetch('/usuarios', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(usuario)
-                });
-
-                const resultado = await respuesta.json();
-                alert(resultado.message || 'Usuario creado');
-
-                if (respuesta.ok) {
-                    localStorage.setItem('usuarioEmail', usuario.email);
-                    formulario.reset();
-                    window.location.href = 'paginainiciarsesion.html';
-                }
-            });
-        </script>
-    </main>
-
-    <a href="preguntasparamedicos.html" class="btn-medico">Soy Médico</a>
-    
-    <section class="imagen2crearcuenta">
-        <img src="https://www.basic-fit.com/on/demandware.static/-/Library-Sites-basic-fit-shared-library/default/dw16c1178a/Blogs/New%20fitness%20routine/Landscape-BasicFit%20Tilburg%2026-8-2114052.jpg" alt="imagen2crearcuenta">
-    </section>
-    <section class="imagen1crearcuenta">
-        <img src="https://img.asmedia.epimg.net/resizer/v2/WLNK6KSK6RCRTAWMFY7TN6ANQY.jpg?auth=167c001e33907445cbbd39dfd91dfcd7d57d86ec097082d196af212c82a82d80&width=1200&height=1200&smart=true" alt="imagen1crearcuenta">
-    </section>
-    <section class="imagen3crearcuenta">
-        <img src="https://www.pixelstalk.net/wp-content/uploads/images6/The-best-Workout-Wallpaper-HD.jpg" alt="imagen3crearcuenta">
-    </section>      
-    <section class="imagen4crearcuenta"> 
-        <img src="https://images.unsplash.com/photo-1572459815549-873917ec8c0a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="imagen4crearcuenta">
-    </section>
-
-</body>
-</html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Cuenta</title>
@@ -114,7 +19,6 @@
             position: relative;
         }
 
-
         .separar {
             padding: 1.25rem;
         }
@@ -129,16 +33,14 @@
             z-index: 10;
         }
 
-        /* --- FORMULARIO Y CAMPOS DE ENTRADA --- */
-
         .contenedor-formulario {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Centrado exacto en pantalla */
+            transform: translate(-50%, -50%);
             z-index: 10;
             width: 40vw;
-            min-width: 18.75rem; /* Resguardo para pantallas muy angostas */
+            min-width: 18.75rem;
         }
 
         .contenedor-formulario h2 {
@@ -157,7 +59,7 @@
         .input-container input {
             width: 100%;
             height: 6.5vh;
-            padding: 0 0.9vw; /* Texto ingresado centrado verticalmente */
+            padding: 0 0.9vw;
             border: none;
             border-radius: 0.6rem;
             background-color: rgba(255, 255, 255, 0.45);
@@ -175,26 +77,21 @@
             color: #666666;
             font-size: 1.4rem;
             pointer-events: none;
-            
-            /* Transición de desvanecimiento */
             transition: opacity 0.2s ease, visibility 0.2s ease;
             opacity: 1;
             visibility: visible;
-
             width: calc(100% - 1.8vw);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* Estilo para el título de la etiqueta (Email:, Nombre:, etc.) */
         .label-title {
             color: #222222;
             font-weight: 200;
             font-size: 1.4rem;
         }
 
-        /* EFECTO: Ocultar totalmente la etiqueta al hacer clic (:focus) o al escribir (:not(:placeholder-shown)) */
         .input-container input:focus ~ label,
         .input-container input:not(:placeholder-shown) ~ label {
             opacity: 0;
@@ -204,8 +101,6 @@
         .input-container input:focus {
             background-color: rgba(255, 255, 255, 0.65);
         }
-
-        /* --- BOTÓN SOY MEDICO --- */
 
         .btn-medico {
             position: absolute;
@@ -227,8 +122,6 @@
         .btn-medico:hover {
             background-color: rgba(255, 255, 255, 0.8);
         }
-
-        /* --- IMÁGENES DE FONDO --- */
 
         .imagen1crearcuenta {  
             position: absolute;
@@ -296,21 +189,97 @@
             opacity: 0.20;
             border-radius: 2.8rem;
         }
-
-.Siguiente {
-    position: absolute;
-    bottom: 10vh; /* Cambia este número si lo querés más arriba o abajo */
-    left: 50%;
-    transform: translateX(-50%); /* Estos dos trucos lo centran horizontalmente */
-    z-index: 10;
-    padding: 1.4vh 1.6vw;
-    border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.55);
-    color: #222222;
-    font-weight: 200;
-    font-size: 1.4rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-}
     </style>
+</head>
+<body>
+    <section class="separar">
+        <a href="paginaconcuenta.html" class="Inicio">ReSport+</a>
+    </section>
+
+    <main class="contenedor-formulario">
+        <h2>Crear cuenta:</h2>
+        <form id="crearCuentaForm">
+            <div class="input-container">
+                <input type="email" id="email" name="email" placeholder=" " required>
+                <label for="email"><span class="label-title">Email:</span> ingresá tu mail</label>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="nombre" name="nombre" placeholder=" " required>
+                <label for="nombre"><span class="label-title">Nombre:</span> ingresá tu nombre</label>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="apellido" name="apellido" placeholder=" " required>
+                <label for="apellido"><span class="label-title">Apellido:</span> ingresá tu apellido</label>
+            </div>
+
+            <div class="input-container">
+                <input type="password" id="password" name="contraseña" placeholder=" " required>
+                <label for="password"><span class="label-title">contraseña:</span> Ingresá tu contraseña</label>
+            </div>
+
+            <div class="input-container">
+                <input type="password" id="confirm-password" name="comfirmarContraseña" placeholder=" " required>
+                <label for="confirm-password"><span class="label-title">confirmar contraseña:</span> Repita la contraseña</label>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="dni" name="DNI" placeholder=" " required>
+                <label for="dni"><span class="label-title">Dni:</span> ingresá tu dni</label>
+            </div>
+
+            <button type="submit" class="btn-medico" style="position: relative; right: auto; bottom: auto; width: 100%; margin-top: 10px;">Crear cuenta</button>
+        </form>
+    </main>
+
+    <a href="preguntasparamedicos.html" class="btn-medico">Soy Médico</a>
+    
+    <section class="imagen2crearcuenta">
+        <img src="https://www.basic-fit.com/on/demandware.static/-/Library-Sites-basic-fit-shared-library/default/dw16c1178a/Blogs/New%20fitness%20routine/Landscape-BasicFit%20Tilburg%2026-8-2114052.jpg" alt="imagen2crearcuenta">
+    </section>
+    <section class="imagen1crearcuenta">
+        <img src="https://img.asmedia.epimg.net/resizer/v2/WLNK6KSK6RCRTAWMFY7TN6ANQY.jpg?auth=167c001e33907445cbbd39dfd91dfcd7d57d86ec097082d196af212c82a82d80&width=1200&height=1200&smart=true" alt="imagen1crearcuenta">
+    </section>
+    <section class="imagen3crearcuenta">
+        <img src="https://www.pixelstalk.net/wp-content/uploads/images6/The-best-Workout-Wallpaper-HD.jpg" alt="imagen3crearcuenta">
+    </section>      
+    <section class="imagen4crearcuenta"> 
+        <img src="https://images.unsplash.com/photo-1572459815549-873917ec8c0a?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="imagen4crearcuenta">
+    </section>
+
+    <script>
+        const formulario = document.getElementById('crearCuentaForm');
+
+        formulario.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const pass1 = document.getElementById('password').value;
+            const pass2 = document.getElementById('confirm-password').value;
+
+            if (pass1 !== pass2) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+
+            const nombreVal = document.getElementById('nombre').value.trim();
+            const apellidoVal = document.getElementById('apellido').value.trim();
+
+            const usuario = {
+                email: document.getElementById('email').value.trim(),
+                nombre: `${nombreVal} ${apellidoVal}`,
+                contraseña: pass1,
+                DNI: document.getElementById('dni').value.trim(),
+                photoUrl: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80"
+            };
+
+            // Guardar usuario creado y establecer como usuario activo
+            localStorage.setItem('registeredUser', JSON.stringify(usuario));
+            localStorage.setItem('currentUser', JSON.stringify(usuario));
+
+            alert('¡Usuario creado con éxito!');
+            window.location.href = 'pregunta1usuarionormal.html';
+        });
+    </script>
+</body>
+</html>

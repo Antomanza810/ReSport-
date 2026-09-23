@@ -17,7 +17,7 @@
 
         <h2 class="pregunta-titulo">Cual es tu genero ?</h2>
 
-        <form id="form-edad" class="opciones-form">
+        <form id="form-genero" class="opciones-form">
             <label class="opcion-card">
                 <input type="radio" name="genero" value="Masculino" required>
                 <span>Masculino</span>
@@ -41,13 +41,17 @@
     </main>
 
     <script>
-        const form = document.getElementById('form-edad');
+        const form = document.getElementById('form-genero');
         const inputs = form.querySelectorAll('input[type="radio"]');
 
         inputs.forEach(input => {
             input.addEventListener('change', () => {
-                const respuesta = input.value;
-                localStorage.setItem('edadUsuario', respuesta);
+                const datosPrevios = JSON.parse(localStorage.getItem('tempUser')) || {};
+                const datosActualizados = {
+                    ...datosPrevios,
+                    genero: input.value
+                };
+                localStorage.setItem('tempUser', JSON.stringify(datosActualizados));
             });
         });
     </script>
@@ -70,7 +74,7 @@
     
     body {
         display: flex;
-        flex-direction: column; /* Apila el contenedor principal y la navegación abajo */
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
@@ -111,7 +115,6 @@
         transition: width 0.3s ease;
     }
     
-    /* --- PREGUNTA --- */
     .pregunta-titulo {
         width: 100%;
         font-size: 1.35rem;
@@ -121,7 +124,6 @@
         text-align: left;
     }
     
-    /* --- OPCIONES DE SELECCIÓN --- */
     .opciones-form {
         width: 100%;
         display: flex;
@@ -161,7 +163,6 @@
         background-color: #b2b2b2;
     }
     
-    /* --- NAVEGACIÓN INFERIOR Y BOTONES --- */
     .navegacion-inferior {
         display: flex;
         justify-content: center;
@@ -171,9 +172,9 @@
         width: 90%;
         max-width: 420px;
         position: absolute;
-        bottom: 10vh; /* Cambia este número si lo querés más arriba o abajo */
+        bottom: 10vh;
         left: 50%;
-        transform: translateX(-50%); /* Estos dos trucos lo centran horizontalmente */
+        transform: translateX(-50%);
     }
     
     .boton-volver {
@@ -211,4 +212,4 @@
     .siguiente:hover {
         background-color: #b8b8b8;
     }
-    </style>
+</style>

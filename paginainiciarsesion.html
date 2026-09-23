@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <link rel="stylesheet" href="paginainiciarsesion.css">
     <meta charset="UTF-8">
@@ -10,75 +10,68 @@
 <main class="contenedor-principal">
     <section class="imagen1iniciarsesion">
         <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPUNj1pBy_EmgSUbdlh6TF64JblwRlDYn53AwbgNKOLIFv6Xdx" alt="imagen1iniciarsesion">
-        </section>
-        <section class="imagen2iniciarsesion">
-            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT4n7t1UGg-DyJ7aBO1EGn2eN513K4pU_VHscL1OBY_UChBtwpP" alt="imagen2iniciarsesion">
-        </section>
-        <section class="imagen3iniciarsesion">
-            <img src="https://www.shutterstock.com/image-photo/active-female-running-on-treadmill-260nw-285610670.jpg" alt="imagen3iniciarsesion">
-        </section>
-        <section class="imagen4iniciarsesion">
-            <img src="https://familia.cooperativaobrera.coop/media/k2/items/cache/4fbac1ae9814b22f440e824a6b165325_XL.webp" alt="imagen4iniciarsesion">
-        </section>
-
+    </section>
+    <section class="imagen2iniciarsesion">
+        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT4n7t1UGg-DyJ7aBO1EGn2eN513K4pU_VHscL1OBY_UChBtwpP" alt="imagen2iniciarsesion">
+    </section>
+    <section class="imagen3iniciarsesion">
+        <img src="https://www.shutterstock.com/image-photo/active-female-running-on-treadmill-260nw-285610670.jpg" alt="imagen3iniciarsesion">
+    </section>
+    <section class="imagen4iniciarsesion">
+        <img src="https://familia.cooperativaobrera.coop/media/k2/items/cache/4fbac1ae9814b22f440e824a6b165325_XL.webp" alt="imagen4iniciarsesion">
+    </section>
 
     <section class="contenedortitulo">
-    <h1 class="logo">ReSport+</h1>
-    <h2 class="textito">Evolucioná a tu propio ritmo</h2>
+        <h1 class="logo">ReSport+</h1>
+        <h2 class="textito">Evolucioná a tu propio ritmo</h2>
     </section>
+
     <section class="email-pasword-ingresar">
-    <form id="loginForm">
-        <input id="emailInput" type="email" placeholder="Correo electrónico" required>
-      
-        <input id="passwordInput" type="password" placeholder="Contraseña" required>
-      
-        <form action="paginaconcuenta.html" method="GET">
+        <form id="loginForm">
+            <input id="emailInput" type="email" placeholder="Correo electrónico" required>
+            <input id="passwordInput" type="password" placeholder="Contraseña" required>
             <button type="submit">INGRESAR</button>
         </form>
-      </form>
-</section>
+    </section>
+
+    <section class="contenedorregistrarse">
+        <div class="rectanguloregistrarse">
+            <a href="crearcuenta.html" class="registrarse">Registrarse</a>
+        </div>
+    </section>
+    <section class="contenedormedico">
+        <div class="rectangulomedico">
+            <a href="preguntasparamedicos.html" class="medico">Soy Médico</a>
+        </div>
+    </section>
+</main>
 
 <script>
     const loginForm = document.getElementById('loginForm');
 
-    loginForm.addEventListener('submit', async (event) => {
+    loginForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const payload = {
-            email: document.getElementById('emailInput').value,
-            contraseña: document.getElementById('passwordInput').value,
-        };
+        const enteredEmail = document.getElementById('emailInput').value.trim();
+        const enteredPassword = document.getElementById('passwordInput').value;
 
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        });
+        const savedUserJSON = localStorage.getItem('registeredUser');
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            alert(data.message || 'No se pudo iniciar sesión.');
+        if (!savedUserJSON) {
+            alert('No hay ninguna cuenta registrada. Por favor crea una cuenta.');
+            window.location.href = 'crearcuenta.html';
             return;
         }
 
-        localStorage.setItem('usuarioEmail', data.usuario.email);
-        window.location.href = 'pregunta1usuarionormal.html';
+        const savedUser = JSON.parse(savedUserJSON);
+
+        if (savedUser.email === enteredEmail && savedUser.contraseña === enteredPassword) {
+            localStorage.setItem('currentUser', JSON.stringify(savedUser));
+            window.location.href = 'paginaconcuenta.html';
+        } else {
+            alert('Correo o contraseña incorrectos.');
+        }
     });
 </script>
-
-
-<section class="contenedorregistrarse">
-<div class="rectanguloregistrarse">
-<a href="crearcuenta.html" class="registrarse">Registrarse</a>
-</div>
-</section>
-<section class="contenedormedico">
-    <div class="rectangulomedico">
-        <a href="preguntasparamedicos.html" class="medico">Soy Médico</a>
-    </div>
-  </section>
 </body>
 </html>
