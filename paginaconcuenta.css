@@ -4,20 +4,32 @@
   padding: 0;
 }
 
+/* Base de escalado proporcional fluido */
+html {
+  /* Escala progresiva según el ancho del monitor */
+  font-size: clamp(13px, 0.95vw, 20px);
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
 section.arriba {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   height: 8vh;
+  min-height: 3.5rem;
   border-bottom: 0.15rem solid #cccccc;
   background-color: #ffffff;
-  padding: 0 1rem;
+  padding: 0 2vw;
+  flex-shrink: 0;
 }
 
 /* Secciones internas del encabezado */
@@ -65,7 +77,7 @@ button {
   padding: 0 0.5rem;
 }
 
-/* Construcción del icono por defecto con CSS */
+/* Icono por defecto */
 .user-avatar-default {
   width: 3rem;
   height: 3rem;
@@ -92,7 +104,7 @@ button {
   border-top-right-radius: 1.1rem;
 }
 
-/* Foto de perfil al iniciar sesión */
+/* Foto de perfil */
 .user-photo {
   width: 3rem;
   height: 3rem;
@@ -100,13 +112,12 @@ button {
   object-fit: cover;
 }
 
-/* Nombre de usuario */
+/* Texto del encabezado */
 .user-name {
   font-size: 1.2rem;
   color: #333333;
 }
 
-/* Nombre de la aplicación */
 .app-title {
   font-size: 1.3rem;
   font-weight: 500;
@@ -114,7 +125,6 @@ button {
   text-decoration: none;
 }
 
-/* Botón de ajustes */
 .settings-btn {
   height: 100%;
   padding: 0 1rem;
@@ -126,12 +136,11 @@ button {
   object-fit: contain;
 }
 
-/* Clases de utilidad */
 .hidden {
   display: none !important;
 }
 
-/* Modal Flotante / Ventanas Modales */
+/* Modales */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -145,16 +154,13 @@ button {
   z-index: 1000;
 }
 
-.modal-overlay.hidden {
-  display: none !important;
-}
-
 .modal-box {
   background-color: #ffffff;
   padding: 1.5rem;
-  border: 2px solid #000;
-  width: 320px;
-  box-shadow: 4px 4px 0px #000;
+  border: 0.15rem solid #000;
+  width: 90%;
+  max-width: 24rem;
+  box-shadow: 0.3rem 0.3rem 0px #000;
 }
 
 .modal-box h2, .modal-box h3 {
@@ -180,7 +186,7 @@ button {
 .form-group input, .form-group select {
   width: 100%;
   padding: 0.4rem;
-  border: 1px solid #000;
+  border: 0.08rem solid #000;
   font-size: 0.85rem;
   border-radius: 0.25rem;
 }
@@ -194,7 +200,7 @@ button {
 
 .btn, .btn-primary, .btn-secondary {
   padding: 0.4rem 0.8rem;
-  border: 1px solid #000;
+  border: 0.08rem solid #000;
   font-weight: bold;
   cursor: pointer;
   font-size: 0.8rem;
@@ -211,72 +217,70 @@ button {
   color: #333333;
 }
 
-.btn:hover, .btn-primary:hover, .btn-secondary:hover {
-  opacity: 0.8;
-}
-
 /* ==========================================
-   LAYOUT PRINCIPAL (MENÚ + CALENDARIO)
+   LAYOUT PRINCIPAL (AJUSTADO A PROPORCIÓN Y CENTRADO)
    ========================================== */
 .contenido-principal {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center;            /* Centra verticalmente el menú con respecto al calendario */
+  justify-content: space-between; /* Mantiene el menú a la izquierda y el calendario a la derecha */
   width: 100%;
-  padding: 2rem 0;
-  padding-right: 3rem;
+  flex: 1;                        /* Ocupa todo el alto restante de la pantalla */
+  padding: 2vh 0 2vh 0;           /* Sin espacio lateral para que el menú pegue al borde izquierdo */
+  padding-right: 2.5vw;           /* Margen a la derecha del calendario */
 }
 
-/* Menú Lateral */
+/* Menú Lateral (Pegado al borde e centrado verticalmente) */
 .menu-lateral {
   display: flex;
   flex-direction: column;
-  width: 16rem;
+  width: 20vw;
+  max-width: 16rem;
+  min-width: 11rem;
   flex-shrink: 0;
   border-top: 0.15rem solid #000;
-  margin-top: 0;
-  padding-left: 0;
+  margin: 0;                      /* Elimina márgenes extra */
 }
 
 .item-menu {
   display: block;
-  padding: 0.8rem 0 0.8rem 1rem;  /* Relleno interno para despegar el texto de la pared */
+  padding: 1rem 0 1rem 1.5vw;     /* Despega el texto del borde izquierdo de la pantalla */
   color: #000;
   text-decoration: none;
   font-family: Arial, sans-serif;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 1rem;
   letter-spacing: 0.03rem;
   border-bottom: 0.15rem solid #000;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
 
 .item-menu:hover {
   background-color: #f0f0f0;
-  padding-left: 0.5rem;
+  padding-left: 1.8vw;
 }
 
 /* Contenedor del Calendario */
 .calendar-container {
-  width: 100%;
-  max-width: 58rem;
-  border: 2px solid #000;
+  width: 72vw;
+  max-width: 75rem;
+  border: 0.15rem solid #000;
   background: #fff;
   margin-left: auto;
 }
 
-/* Cabecera con Nombre del Mes y Flechas */
+/* Cabecera del Calendario */
 .calendar-header {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  padding: 0.6rem 0;
-  border-bottom: 2px solid #000;
+  padding: 0.8rem 0;
+  border-bottom: 0.15rem solid #000;
 }
 
 .calendar-header h2 {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -285,7 +289,7 @@ button {
 .nav-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   cursor: pointer;
   user-select: none;
@@ -296,7 +300,7 @@ button {
   color: #555;
 }
 
-/* Grilla de Días */
+/* Grilla del Calendario */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -304,26 +308,26 @@ button {
 }
 
 .day-cell {
-  min-height: 80px;
-  border-right: 2px solid #000;
-  border-bottom: 2px solid #000;
-  padding: 0.25rem;
+  height: 12.5vh;                 /* El alto de las celdas escala según la altura de la pantalla */
+  min-height: 4.5rem;
+  border-right: 0.15rem solid #000;
+  border-bottom: 0.15rem solid #000;
+  padding: 0.3rem;
   position: relative;
   background: #fff;
+  overflow: hidden;
 }
 
-/* Quitar borde derecho a la última columna */
 .day-cell:nth-child(7n) {
   border-right: none;
 }
 
-/* Celdas del mes anterior/siguiente */
 .day-cell.empty {
   background-color: #f9f9f9;
 }
 
 .day-number {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: bold;
   text-align: right;
   margin-bottom: 0.2rem;
@@ -331,11 +335,11 @@ button {
 
 /* Estilo del Evento */
 .event-card {
-  border: 1px solid #000;
+  border: 0.08rem solid #000;
   padding: 0.2rem 0.3rem;
   margin-bottom: 0.2rem;
   border-radius: 2px;
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -355,7 +359,6 @@ button {
   margin-left: 0.2rem;
 }
 
-/* Colores por Tipo de Evento */
 .event-card.entrenamiento {
   background-color: #ff7b7b;
   color: #000;
@@ -363,5 +366,5 @@ button {
 
 .event-card.consulta {
   background-color: #82bfe0;
-  color: hsl(0, 0%, 0%);
+  color: #000;
 }
