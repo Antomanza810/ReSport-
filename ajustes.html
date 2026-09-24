@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajustes - ReSport+</title>
+  <link rel="stylesheet" href="paginaconcuenta.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .ajustes-container {
+      width: 100%;
+      padding: 1.5rem 1rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .ajuste-row {
+      background-color: #dcdcdc;
+      border-radius: 0.8rem;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .ajuste-info {
+      font-size: 1rem;
+      color: #111;
+      font-family: Arial, sans-serif;
+      width: 100%;
+    }
+
+    .ajuste-info strong {
+      font-weight: bold;
+    }
+
+    .edit-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .edit-icon-btn svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: #000;
+    }
+
+    /* Estilos para inputs y selects en edición */
+    .ajuste-input, .ajuste-select {
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      border: 1px solid #000;
+      border-radius: 0.4rem;
+      width: calc(100% - 200px);
+      box-sizing: border-box;
+      outline: none;
+      background-color: #fff;
+    }
+
+    .logout-btn-container {
+      margin: 1.5rem 0 3rem 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-logout {
+      background-color: #ff4d4d;
+      color: white;
+      border: 2px solid #000;
+      padding: 0.7rem 2.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-logout:hover {
+      background-color: #e60000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCABEZADO "ARRIBA" -->
+  <section class="arriba">
+    <div class="header-section profile-section">
+      <button class="profile-btn" id="profileBtn" type="button">
+        <div class="user-avatar-default" id="defaultAvatar">
+          <div class="head"></div>
+          <div class="body"></div>
+        </div>
+        <img id="userPhoto" class="user-photo hidden" src="" alt="Foto de Perfil">
+      </button>
+
+      <div class="divider"></div>
+
+      <div class="user-name" id="userNameDisplay">Nombre</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="header-section app-title-section">
+      <a href="paginaconcuenta.html" class="app-title">ReSport+</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="header-section settings-section">
+      <button class="settings-btn" id="settingsBtn" type="button">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'><path d='M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6-3.6 3.6z'/></svg>" alt="Ajustes" class="settings-img">
+      </button>
+    </div>
+  </section>
+
+  <!-- CONTENEDOR DE AJUSTES -->
+  <div class="ajustes-container" id="ajustesList"></div>
+
+  <!-- BOTÓN CERRAR SESIÓN -->
+  <div class="logout-btn-container">
+    <button class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
+  </div>
+
+  <script>
+    // Leer los datos que el usuario ingresó al crear la cuenta / responder el cuestionario
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+
+    const defaultAvatar = document.getElementById('defaultAvatar');
+    const userPhoto = document.getElementById('userPhoto');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const ajustesList = document.getElementById('ajustesList');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // 1. Actualizar Encabezado Superior
+    function updateHeader() {
+      if (currentUser) {
+        if (currentUser.photoUrl) {
+          defaultAvatar.classList.add('hidden');
+          userPhoto.src = currentUser.photoUrl;
+          userPhoto.classList.remove('hidden');
+        } else {
+          defaultAvatar.classList.remove('hidden');
+          userPhoto.classList.add('hidden');
+        }
+        
+        // Muestra Nombre y Apellido juntos solo en el header superior
+        const nombreCompleto = `${currentUser.nombre || ''} ${currentUser.apellido || ''}`.trim();
+        userNameDisplay.textContent = nombreCompleto || 'Usuario';
+      }
+    }
+
+    const pencilSvg = `
+      <svg viewBox="0 0 24 24">
+        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+      </svg>
+    `;
+
+    // Definición de campos con sus tipos y opciones para las preguntas del cuestionario
+    const campos = [
+      { key: 'nombre', label: 'Nombre', type: 'text' },
+      { key: 'apellido', label: 'Apellido', type: 'text' },
+      { key: 'dni', label: 'Dni', type: 'text' },
+      { key: 'email', label: 'Gmail', type: 'text' },
+      { key: 'photoUrl', label: 'URL Foto de Perfil', type: 'text' },
+      { 
+        key: 'edad', 
+        label: 'Edad', 
+        type: 'select', 
+        options: ['13-17 años', '18-25 años', '26-40 años', '41-60 años', '+60 años'] 
+      },
+      { 
+        key: 'genero', 
+        label: 'Genero', 
+        type: 'select', 
+        options: ['Masculino', 'Femenino', 'Otro', 'Prefiero no decirlo'] 
+      },
+      { 
+        key: 'objetivo', 
+        label: 'Cual es tu objetivo', 
+        type: 'select', 
+        options: ['Ganar músculo', 'Perder peso', 'Mantenerse en forma', 'Aumentar resistencia', 'Salud y movilidad'] 
+      },
+      { 
+        key: 'diasEntrenamiento', 
+        label: 'Cuantas veces a la semana queres entrenar', 
+        type: 'select', 
+        options: ['1-2 días', '3 días', '4 días', '5 días', '6-7 días'] 
+      },
+      { 
+        key: 'duracionEntrenamiento', 
+        label: 'Cuan largo queres que tus entrenamientos sean', 
+        type: 'select', 
+        options: ['15-30 minutos', '45 minutos', '60 minutos', '90 minutos'] 
+      }
+    ];
+
+    // 2. Renderizar las filas grises
+    function renderAjustes() {
+      ajustesList.innerHTML = '';
+
+      campos.forEach(campo => {
+        const row = document.createElement('div');
+        row.className = 'ajuste-row';
+
+        const value = currentUser[campo.key] || '';
+
+        row.innerHTML = `
+          <div class="ajuste-info" id="info-${campo.key}">
+            <strong>${campo.label}:</strong> ${value}
+          </div>
+          <button class="edit-icon-btn" onclick="habilitarEdicion('${campo.key}')" title="Editar">
+            ${pencilSvg}
+          </button>
+        `;
+
+        ajustesList.appendChild(row);
+      });
+    }
+
+    // 3. Habilitar la edición de acuerdo al tipo de campo (Texto o Selección)
+    window.habilitarEdicion = function(key) {
+      const campoConfig = campos.find(c => c.key === key);
+      const infoDiv = document.getElementById(`info-${key}`);
+      const valorActual = currentUser[key] || '';
+
+      if (campoConfig.type === 'select') {
+        // Generar menú desplegable con las opciones predefinidas
+        let optionsHtml = campoConfig.options.map(opt => 
+          `<option value="${opt}" ${opt === valorActual ? 'selected' : ''}>${opt}</option>`
+        ).join('');
+
+        infoDiv.innerHTML = `
+          <strong>${campoConfig.label}:</strong> 
+          <select class="ajuste-select" id="input-${key}">
+            ${optionsHtml}
+          </select>
+        `;
+
+        const select = document.getElementById(`input-${key}`);
+        select.focus();
+
+        // Guardar al seleccionar una opción o perder el foco
+        select.addEventListener('change', () => guardarCampo(key, select.value));
+        select.addEventListener('blur', () => guardarCampo(key, select.value));
+
+      } else {
+        // Campo de texto simple
+        infoDiv.innerHTML = `
+          <strong>${campoConfig.label}:</strong> 
+          <input type="text" class="ajuste-input" id="input-${key}" value="${valorActual}">
+        `;
+
+        const input = document.getElementById(`input-${key}`);
+        input.focus();
+
+        // Guardar con Enter o perder el foco
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') guardarCampo(key, input.value);
+        });
+        input.addEventListener('blur', () => guardarCampo(key, input.value));
+      }
+    };
+
+    function guardarCampo(key, nuevoValor) {
+      currentUser[key] = nuevoValor.trim();
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      updateHeader();
+      renderAjustes();
+    }
+
+    // 4. Cerrar Sesión
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('currentUser');
+      window.location.href = 'paginainiciarsesion.html';
+    });
+
+    // Inicialización
+    updateHeader();
+    renderAjustes();
+  </script>
+</body>
+</html>

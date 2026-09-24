@@ -182,15 +182,13 @@
     // Cargar datos al abrir la página
     updateUI();
 
-    profileBtn.addEventListener('click', () => {
-      if (!currentUser) {
-        window.location.href = 'paginainiciarsesion.html';
-      } else {
-        editNameInput.value = currentUser.nombre;
-        editPhotoUrlInput.value = currentUser.photoUrl || '';
-        editProfileModal.classList.remove('hidden');
-      }
-    });
+    // Reemplaza el listener de profileBtn por esto:
+profileBtn.addEventListener('click', () => {
+  if (!currentUser) {
+    window.location.href = 'paginainiciarsesion.html';
+  }
+  // Si ya tiene cuenta, no hace nada al hacer clic en la foto
+});
 
     editProfileForm.addEventListener('submit', (e) => {
       e.preventDefault();
