@@ -182,13 +182,11 @@
     // Cargar datos al abrir la página
     updateUI();
 
-    // Reemplaza el listener de profileBtn por esto:
-profileBtn.addEventListener('click', () => {
-  if (!currentUser) {
-    window.location.href = 'paginainiciarsesion.html';
-  }
-  // Si ya tiene cuenta, no hace nada al hacer clic en la foto
-});
+    profileBtn.addEventListener('click', () => {
+      if (!currentUser) {
+        window.location.href = 'paginainiciarsesion.html';
+      }
+    });
 
     editProfileForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -207,8 +205,8 @@ profileBtn.addEventListener('click', () => {
     closeEditBtn.addEventListener('click', () => editProfileModal.classList.add('hidden'));
 
     settingsBtn.addEventListener('click', () => {
-  window.location.href = 'ajustes.html';
-});
+      window.location.href = 'ajustes.html';
+    });
 
     const calendarGrid = document.getElementById('calendarGrid');
     const monthYearDisplay = document.getElementById('monthYearDisplay');
@@ -243,12 +241,14 @@ profileBtn.addEventListener('click', () => {
       const firstDayIndex = new Date(year, month, 1).getDay();
       const totalDays = new Date(year, month + 1, 0).getDate();
 
+      // Celdas vacías al inicio del mes
       for (let i = 0; i < firstDayIndex; i++) {
         const emptyCell = document.createElement('div');
         emptyCell.classList.add('day-cell', 'empty');
         calendarGrid.appendChild(emptyCell);
       }
 
+      // Celdas con días del mes
       for (let day = 1; day <= totalDays; day++) {
         const cell = document.createElement('div');
         cell.classList.add('day-cell');
@@ -287,6 +287,16 @@ profileBtn.addEventListener('click', () => {
         });
 
         calendarGrid.appendChild(cell);
+      }
+
+      // Celdas vacías al final para completar la última semana de 7 días
+      const totalCells = firstDayIndex + totalDays;
+      const remainingCells = (7 - (totalCells % 7)) % 7;
+
+      for (let i = 0; i < remainingCells; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.classList.add('day-cell', 'empty');
+        calendarGrid.appendChild(emptyCell);
       }
     }
 
